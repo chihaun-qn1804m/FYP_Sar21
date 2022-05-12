@@ -9,5 +9,9 @@ EditorBuildSettings:
     path: Assets/_MyProject/Scenes/MLAPI Testing Scene.unity
     guid: 75bedcddb11e0a34a884325646354413
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6b379919dcec89e4c95dc63446ed5485,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8bd81bcb0864f1c47a7a7370f328c834,
+      type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 76c528037da33504f813702ba965140a,
       type: 2}
