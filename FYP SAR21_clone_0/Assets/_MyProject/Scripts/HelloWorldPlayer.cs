@@ -1,0 +1,58 @@
+using Unity.Netcode;
+using UnityEngine;
+
+namespace HelloWorld
+{
+    public class HelloWorldPlayer : NetworkBehaviour
+    {
+        public NetworkVariable<Vector3> Position = new NetworkVariable<Vector3>();
+        public GameObject camera;
+        public GameObject HMDInfoManager;
+        public GameObject XRDeviceManager;
+        public GameObject XRInteractionManager;
+
+        public override void OnNetworkSpawn()
+        {
+            if (IsOwner)
+            {
+                Move();
+                camera.SetActive(true);
+                HMDInfoManager.SetActive(true);
+            }
+            else if (!IsOwner){
+                camera.SetActive(false);
+                HMDInfoManager.SetActive(false);
+            }
+        }
+
+        public void Move()
+        {
+            if (NetworkManager.Singleton.IsServer)
+            {
+                var randomPosition = GetRandomPositionOnPlane();
+                transform.position = randomPosition;
+                Position.Value = randomPosition;
+            }
+            else
+            {
+                SubmitPositionRequestServerRpc();
+            }
+        }
+
+        [ServerRpc]
+        void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
+        {
+            Position.Value = GetRandomPositionOnPlane();
+        }
+
+        static Vector3 GetRandomPositionOnPlane()
+        {
+            return new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
+        }
+
+        void Update()
+        {
+            transform.position = Position.Value;
+        }
+    }
+}
