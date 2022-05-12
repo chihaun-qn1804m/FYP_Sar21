@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using Photon.Pun;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace BNG {
 
@@ -68,6 +71,9 @@ namespace BNG {
         // Start is called before the first frame update
         void Start() {
             animator = GetComponent<Animator>();
+
+
+            FollowPlayer = FindObjectOfType<CharacterController>();
 
             headBone = animator.GetBoneTransform(HumanBodyBones.Head);
             leftHandJoint = animator.GetBoneTransform(HumanBodyBones.LeftHand);
