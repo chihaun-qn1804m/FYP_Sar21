@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
-using Photon.Pun;
-using UnityEngine.XR.Interaction.Toolkit;
 
 namespace BNG {
 
@@ -43,9 +40,6 @@ namespace BNG {
         Transform camTransform;
 
         void Start() {
-            Character = FindObjectOfType<CharacterController>();
-            FollowTransform = Character.transform;
-
             originalParent = transform.parent;
             followTransform = new GameObject().transform;
             followTransform.name = "RotateReferenceObject";
