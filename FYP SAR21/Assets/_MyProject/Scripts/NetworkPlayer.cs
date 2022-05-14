@@ -16,7 +16,6 @@ public class NetworkPlayer : MonoBehaviour
     private Transform headRig;
     private Transform leftHandRig;
     private Transform rightHandRig;
-    private Transform bodyRig;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +26,6 @@ public class NetworkPlayer : MonoBehaviour
         headRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/CenterEyeAnchor");
         leftHandRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/LeftHandAnchor");
         rightHandRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/RightHandAnchor");
-        bodyRig = rig.transform.Find("BodyIK");
-    
     }
 
     // Update is called once per frame
@@ -39,12 +36,10 @@ public class NetworkPlayer : MonoBehaviour
             rightHand.gameObject.SetActive(false);
             leftHand.gameObject.SetActive(false);
             head.gameObject.SetActive(false);
-            body.gameObject.SetActive(false);
 
             MapPosition(head, headRig);
             MapPosition(leftHand, leftHandRig);
             MapPosition(rightHand, rightHandRig);
-            MapPosition(body, bodyRig);
         }
     }
 
