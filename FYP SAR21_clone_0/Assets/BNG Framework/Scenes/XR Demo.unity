@@ -1747,6 +1747,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0.18
       objectReference: {fileID: 0}
+    - target: {fileID: 9214684175537064418, guid: 62f4987b7e086ff43ab61a31ee443048,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62f4987b7e086ff43ab61a31ee443048, type: 3}
 --- !u!4 &26073363 stripped
@@ -39087,6 +39092,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 597562632}
     m_Modifications:
+    - target: {fileID: 831789002696430783, guid: 1f75a4a1ec4271442a6c51de842cadf0,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 831789002696430783, guid: 1f75a4a1ec4271442a6c51de842cadf0,
         type: 3}
       propertyPath: m_DynamicPixelsPerUnit
@@ -82392,6 +82402,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 597562632}
     m_Modifications:
+    - target: {fileID: 831789002696430783, guid: 1f75a4a1ec4271442a6c51de842cadf0,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 831789002696430783, guid: 1f75a4a1ec4271442a6c51de842cadf0,
         type: 3}
       propertyPath: m_DynamicPixelsPerUnit
