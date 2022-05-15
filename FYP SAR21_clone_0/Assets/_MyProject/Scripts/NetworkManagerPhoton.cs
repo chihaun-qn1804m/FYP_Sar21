@@ -37,7 +37,9 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
         roomUI.SetActive(true);
     }
 
-    public void InitialiazeRoom(int defaultRoomIndex) {
+void OnTriggerEnter(Collider other) {
+    Debug.Log("test");
+     void InitialiazeRoom(int defaultRoomIndex) {
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
         //Load Scene
         PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
@@ -49,6 +51,8 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinOrCreateRoom(roomSettings.Name, roomOptions, TypedLobby.Default);
     }
+}
+    
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a Room");
