@@ -60,7 +60,6 @@ public class OVROverlay : MonoBehaviour
 		ReconstructionPassthrough = OVRPlugin.OverlayShape.ReconstructionPassthrough,
 		SurfaceProjectedPassthrough = OVRPlugin.OverlayShape.SurfaceProjectedPassthrough,
 		Fisheye = OVRPlugin.OverlayShape.Fisheye,
-		KeyboardHandsPassthrough = OVRPlugin.OverlayShape.KeyboardHandsPassthrough,
 	}
 
 	/// <summary>
@@ -167,9 +166,6 @@ public class OVROverlay : MonoBehaviour
 
 	[Tooltip("When checked, the texture is treated as if the alpha was already premultiplied")]
 	public bool isAlphaPremultiplied = false;
-
-	[Tooltip("When checked, the layer will use bicubic filtering")]
-	public bool useBicubicFiltering = false;
 
 
 	/// <summary>
@@ -610,10 +606,6 @@ public class OVROverlay : MonoBehaviour
 			newDesc.LayerFlags |= (int)OVRPlugin.LayerFlags.AndroidSurfaceSwapChain;
 		}
 
-		if (useBicubicFiltering)
-		{
-			newDesc.LayerFlags |= (int)OVRPlugin.LayerFlags.BicubicFiltering;
-		}
 
 		return newDesc;
 	}
@@ -830,7 +822,6 @@ public class OVROverlay : MonoBehaviour
 	public static bool IsPassthroughShape(OverlayShape shape)
 	{
 		return shape == OverlayShape.ReconstructionPassthrough
-			|| shape == OverlayShape.KeyboardHandsPassthrough
 			|| shape == OverlayShape.SurfaceProjectedPassthrough;
 	}
 
@@ -856,7 +847,7 @@ public class OVROverlay : MonoBehaviour
 
 		// Backward compatibility
 		if (rend != null && textures[0] == null)
-			textures[0] = rend.sharedMaterial.mainTexture;
+			textures[0] = rend.material.mainTexture;
 
 		SetupEditorPreview();
 	}
@@ -878,18 +869,11 @@ public class OVROverlay : MonoBehaviour
 
 	void InitOVROverlay()
 	{
-#if USING_XR_SDK_OPENXR
-		if (!OVRPlugin.UnityOpenXR.Enabled)
+		if (!OVRManager.isHmdPresent)
 		{
-#endif
-			if (!OVRManager.isHmdPresent)
-			{
-				enabled = false;
-				return;
-			}
-#if USING_XR_SDK_OPENXR
+			enabled = false;
+			return;
 		}
-#endif
 
 		constructedOverlayXRDevice = OVRManager.XRDevice.Unknown;
 		if (OVRManager.loadedXRDevice == OVRManager.XRDevice.OpenVR)
