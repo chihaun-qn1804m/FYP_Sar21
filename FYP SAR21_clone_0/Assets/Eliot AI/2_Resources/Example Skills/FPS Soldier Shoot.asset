@@ -3,9 +3,8 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -19,10 +18,10 @@ MonoBehaviour:
   _adjustOriginRotation: 0
   _initSkillBy: 1
   _projectilePrefab: {fileID: 114508278873844618, guid: d28344230494e4343b07e4ec9cfece5e,
-    type: 3}
+    type: 2}
   _range: 25
   _fieldOfView: 0
-  _loadTime: 1
+  _loadTime: 0
   _invocationDuration: 0
   _invocationPing: 0
   _effectDuration: 0
@@ -40,7 +39,7 @@ MonoBehaviour:
   - resourceName: Health
     affectionWay: 1
     minPower: 1
-    maxPower: 2
+    maxPower: 1
   _setStatus: 0
   _status: 0
   _statusDuration: 0
