@@ -1,9 +1,21 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 92b8a050249b4ea47b9da8fe38ed12a1
+=======
+<<<<<<< Updated upstream:FYP SAR21/Assets/Oculus/Interaction/Runtime/Scripts/HandPosing/Recording/HandPoseRecorder.cs.meta
+guid: f0350d356fc9592468b162c8fcfbc055
+=======
+guid: 92b8a050249b4ea47b9da8fe38ed12a1
+>>>>>>> Stashed changes:FYP SAR21/Assets/Oculus/Interaction/Editor/HandPosing/HandGrab/HandGrabPointEditor.cs.meta
+>>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
+<<<<<<< Updated upstream
+=======
+  labels: ["oculus_interaction_deprecated"]
+>>>>>>> Stashed changes
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
