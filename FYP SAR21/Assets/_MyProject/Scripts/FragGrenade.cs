@@ -8,7 +8,9 @@ public class FragGrenade : MonoBehaviour
     public float radius = 5f;
     public float force = 700f;
 
+    public Transform Pin;
     public GameObject explosionEffect;
+
 
     float countdown;
     bool hasExploded = false;
@@ -22,12 +24,19 @@ public class FragGrenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countdown -= Time.deltaTime;
-        if (countdown <= 0f && !hasExploded)
+        var joint = Pin.GetComponent<FixedJoint>();
+        if (!joint)
         {
-            Explode();
-            hasExploded = true;
+            Pin.parent = null;
+
+            countdown -= Time.deltaTime;
+            if (countdown <= 0f && !hasExploded)
+            {
+                Explode();
+                hasExploded = true;
+            }
         }
+
     }
 
     void Explode ()
@@ -42,7 +51,7 @@ public class FragGrenade : MonoBehaviour
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(force, transform.position, radius);
+                //rb.AddExplosionForce(force, transform.position, radius);
             }
             //Damage
         }
