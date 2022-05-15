@@ -5,8 +5,8 @@ using UnityEngine;
 public class SmokeGrenade : MonoBehaviour
 {
     public float delay = 3f;
-    public float radius = 5f;
 
+    public Transform Pin;
     public GameObject explosionEffect;
 
     float countdown;
@@ -21,11 +21,17 @@ public class SmokeGrenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countdown -= Time.deltaTime;
-        if (countdown <= 0f && !hasExploded)
+        var joint = Pin.GetComponent<FixedJoint>();
+        if (!joint)
         {
-            Explode();
-            hasExploded = true;
+            Pin.parent = null;
+
+            countdown -= Time.deltaTime;
+            if (countdown <= 0f && !hasExploded)
+            {
+                Explode();
+                hasExploded = true;
+            }
         }
     }
 
