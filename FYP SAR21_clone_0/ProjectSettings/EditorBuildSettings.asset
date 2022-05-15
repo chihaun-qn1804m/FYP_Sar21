@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_MyProject/Scenes/SAR21.unity
     guid: f5ee69b0ee90cd942858a8f7ad1dd2af
-  - enabled: 1
+  - enabled: 0
     path: Assets/_MyProject/Scenes/Photon Testing Scene.unity
     guid: b13632b075c9c644ea625710f145d1b1
   - enabled: 1
