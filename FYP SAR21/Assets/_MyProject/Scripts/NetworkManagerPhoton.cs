@@ -15,13 +15,12 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     public List<DefaultRoom> defaultRooms;
    public GameObject roomUI;
-   public GameObject loading;
+   
     public void ConnectToServer()
     {
         Debug.Log("testtt");
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Try Connect to Server...");
-        loading.SetActive(true);
     }
 
     public override void OnConnectedToMaster()
@@ -35,13 +34,10 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("We join the lobby");
-        loading.SetActive(false);
         roomUI.SetActive(true);
     }
 
-void OnTriggerEnter(Collider other) {
-    Debug.Log("test");
-     void InitialiazeRoom(int defaultRoomIndex) {
+    public void InitialiazeRoom(int defaultRoomIndex) {
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
         //Load Scene
         PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
@@ -53,8 +49,6 @@ void OnTriggerEnter(Collider other) {
 
         PhotonNetwork.JoinOrCreateRoom(roomSettings.Name, roomOptions, TypedLobby.Default);
     }
-}
-    
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a Room");
