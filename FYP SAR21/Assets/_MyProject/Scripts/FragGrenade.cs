@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class FragGrenade : MonoBehaviour
 {
+    [SerializeField] private AudioSource audio_clip;
+
+
     public float delay = 3f;
     public float radius = 5f;
     public float force = 700f;
 
     public Transform Pin;
     public GameObject explosionEffect;
-
 
     float countdown;
     bool hasExploded = false;
@@ -32,6 +34,7 @@ public class FragGrenade : MonoBehaviour
             countdown -= Time.deltaTime;
             if (countdown <= 0f && !hasExploded)
             {
+                audio_clip.Play();
                 Explode();
                 hasExploded = true;
             }
@@ -56,6 +59,10 @@ public class FragGrenade : MonoBehaviour
             //Damage
         }
 
-        Destroy(gameObject);
+        while (!audio_clip.isPlaying)
+        {
+            Destroy(gameObject);
+        }
     }
+
 }
