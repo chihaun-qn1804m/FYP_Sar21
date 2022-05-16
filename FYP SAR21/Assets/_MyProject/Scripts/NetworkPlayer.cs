@@ -10,7 +10,6 @@ public class NetworkPlayer : MonoBehaviour
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
-    public Transform body;
     private PhotonView photonView;
 
     private Transform headRig;
