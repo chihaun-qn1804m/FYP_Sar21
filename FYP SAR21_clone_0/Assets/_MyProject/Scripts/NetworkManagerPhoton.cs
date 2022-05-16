@@ -5,7 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 
 [System.Serializable]
-public class DefaultRoom{
+public class DefaultRoom
+{
     public string Name;
     public int sceneIndex;
     public int maxPlayer;
@@ -14,10 +15,8 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     public List<DefaultRoom> defaultRooms;
-   public GameObject roomUI;
-   
-   public GameObject canvas;
-   public GameObject loading;
+    public GameObject canvas;
+    public GameObject loading;
     public void ConnectToServer()
     {
         Debug.Log("testtt");
@@ -36,14 +35,14 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("We join the lobby");
-        roomUI.SetActive(true);
         loading.SetActive(false);
         canvas.SetActive(false);
     }
 
-        
-        
-    public void InitialiazeRoom(int defaultRoomIndex, Collider other) {
+
+
+    public void InitialiazeRoom(int defaultRoomIndex, Collider other)
+    {
         Debug.Log("hihihihihi");
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
         int objectname = int.Parse(other.gameObject.name);
@@ -58,8 +57,8 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinOrCreateRoom(roomSettings.Name, roomOptions, TypedLobby.Default);
     }
-    
-    
+
+
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a Room");

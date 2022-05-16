@@ -370,6 +370,7 @@ namespace Eliot.AgentComponents
 
             if (useDefaultTargetIndicator)
             {
+#if UNITY_EDITOR
                 var guidsToTargetIndicatorPrefab = AssetDatabase.FindAssets("EliotTargetIndicatorPrefab");
                 if (guidsToTargetIndicatorPrefab.Length > 0)
                 {
@@ -380,6 +381,7 @@ namespace Eliot.AgentComponents
                 {
                     Debug.LogWarning("Failed to find EliotTargetIndicatorPrefab");
                 }
+#endif
             }
         }
 
@@ -472,7 +474,7 @@ namespace Eliot.AgentComponents
         {
             if (_agentMotion)
             {
-                #region Rotation
+#region Rotation
 
                 if (rotationType == RotationType.CursorProjection)
                 {
@@ -486,9 +488,9 @@ namespace Eliot.AgentComponents
                         _agentMotion.Engine.LookAtTarget(GetTargetRotationFromMouseOffset());
                 }
 
-                #endregion
+#endregion
 
-                #region Motion
+#region Motion
 
                 if (motionInputType == MotionInputType.WASD)
                 {
@@ -520,10 +522,10 @@ namespace Eliot.AgentComponents
                     else _agentMotion.Engine.WalkToTarget();
                 }
 
-                #endregion
+#endregion
             }
 
-            #region Skills and Actions
+#region Skills and Actions
             
             if(keySkillBindingToExecute != null)
                 keySkillBindingToExecute.Execute(_agent);
@@ -532,7 +534,7 @@ namespace Eliot.AgentComponents
                 keyActionBindingToExecute.Execute();
             keyActionBindingToExecute = null;
 
-            #endregion
+#endregion
         }
 
         /// <summary>
@@ -547,7 +549,7 @@ namespace Eliot.AgentComponents
             }
         }
 
-        #region Get Target Position
+#region Get Target Position
 
         /// <summary>
         /// Translate input into motion target.
@@ -601,10 +603,10 @@ namespace Eliot.AgentComponents
             return _agent.transform.position;
         }
 
-        #endregion
+#endregion
         
         
-        #region Get Target Rotation
+#region Get Target Rotation
 
         /// <summary>
         /// Translate input into rotation target.
@@ -616,7 +618,7 @@ namespace Eliot.AgentComponents
             return rotationTarget.position;
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// This function is called when the component is added to an Agent.
