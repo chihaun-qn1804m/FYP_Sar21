@@ -17,6 +17,7 @@ public class FadeSettingMenu : MonoBehaviour
     public GameObject Canvas;
     public GameObject Panel_1;
     public GameObject Panel_2;
+    public GameObject playerModel;
 
     // Start is called before the first frame update
     public void onClick()
@@ -33,6 +34,20 @@ public class FadeSettingMenu : MonoBehaviour
         });
 
     }
+    public void onClickMenu()
+    {
+        Canvas.SetActive(true);
+        var seq = LeanTween.sequence();
+        seq.append(2f);
+        seq.append(() => {
+            FadeInCam();
+        });
+        seq.append(3f);
+        seq.append(() => {
+            FadeOutCamMenu();
+        });
+
+    }
 
     public void FadeInCam()
     {
@@ -43,6 +58,15 @@ public class FadeSettingMenu : MonoBehaviour
 
     public void FadeOutCam()
     {
+        playerModel.SetActive(false);
+        Panel_1.SetActive(false);
+        Panel_2.SetActive(true);
+        LeanTween.alpha(_fadeScreenRectTransform, to: 0f, _fadeOutTime);
+
+    }
+    public void FadeOutCamMenu()
+    {
+        playerModel.SetActive(true);
         Panel_1.SetActive(false);
         Panel_2.SetActive(true);
         LeanTween.alpha(_fadeScreenRectTransform, to: 0f, _fadeOutTime);

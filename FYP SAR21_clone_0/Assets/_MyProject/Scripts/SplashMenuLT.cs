@@ -9,6 +9,8 @@ public class SplashMenuLT : MonoBehaviour
     #region Variables
 //get splash screen panel
     [SerializeField] private GameObject _splashScr;
+    [SerializeField] private GameObject playerModel;
+    [SerializeField] private GameObject gameTitle;
     //set splash screeen settings
     [Header("SplashScreen Settings")]
     [SerializeField] [Range(0.1f, 9.0f)] private float _fadeInTime = 1.0f;
@@ -72,6 +74,8 @@ public class SplashMenuLT : MonoBehaviour
     private void ShowDecalAndMenu()
     {//show decal and menu and timer
         _decalJetHammer.SetActive(true);
+        gameTitle.SetActive(true);
+        playerModel.SetActive(true);
         LeanTween.alphaCanvas(_mainMenuPanel, 30f, 2f);
     }
     #endregion
