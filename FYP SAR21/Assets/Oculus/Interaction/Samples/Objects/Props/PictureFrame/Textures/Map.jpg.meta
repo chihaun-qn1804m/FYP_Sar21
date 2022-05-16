@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/PictureFrame/Textures/Map.jpg.meta
 guid: 2eb58f3a8dada1c4e8cda5ebd05884f7
+=======
+guid: be89d100cd1db2c41a534fe63c258f06
+>>>>>>> Stashed changes:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/PictureFrame/Textures/Love.jpg.meta
+=======
+guid: 2eb58f3a8dada1c4e8cda5ebd05884f7
+>>>>>>> Stashed changes
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

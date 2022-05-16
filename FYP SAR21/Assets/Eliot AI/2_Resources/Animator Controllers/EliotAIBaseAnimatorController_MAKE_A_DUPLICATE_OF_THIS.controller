@@ -155,11 +155,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:FYP SAR21/Assets/Eliot AI/2_Resources/Animator Controllers/EliotAIBaseAnimatorController_MAKE_A_DUPLICATE_OF_THIS.controller
   m_Name: EliotAIBaseAnimatorController_MAKE_A_DUPLICATE_OF_THIS
-========
-  m_Name: EliotAIBaseAnimatorController_FPSSoldier
->>>>>>>> f55aa7faba3a1ff7941735d2c97339f981654b0a:FYP SAR21_clone_1/Assets/Eliot AI/2_Resources/Animator Controllers/EliotAIBaseAnimatorController_FPSSoldier.controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Vertical

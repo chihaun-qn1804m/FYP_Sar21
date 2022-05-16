@@ -9,14 +9,26 @@ EditorBuildSettings:
     path: Assets/_MyProject/Scenes/MLAPI Testing Scene.unity
     guid: 75bedcddb11e0a34a884325646354413
   - enabled: 1
+    path: Assets/_MyProject/Scenes/Main Scene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/_MyProject/Scenes/SAR21.unity
     guid: f5ee69b0ee90cd942858a8f7ad1dd2af
-  - enabled: 1
+  - enabled: 0
     path: Assets/_MyProject/Scenes/Photon Testing Scene.unity
     guid: b13632b075c9c644ea625710f145d1b1
+<<<<<<< Updated upstream
   - enabled: 1
     path: Assets/_MyProject/Scenes/Lobby 2.unity
     guid: aa41fe764619d4f428dfb05ad469bec2
+=======
+  - enabled: 0
+    path: Assets/_MyProject/Scenes/Lobby 2.unity
+    guid: aa41fe764619d4f428dfb05ad469bec2
+  - enabled: 1
+    path: Assets/_MyProject/Scenes/ProBuilder lobby.unity
+    guid: 724bafe24cbd9dc4397ed536baaec898
+>>>>>>> Stashed changes
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6b379919dcec89e4c95dc63446ed5485,
       type: 2}

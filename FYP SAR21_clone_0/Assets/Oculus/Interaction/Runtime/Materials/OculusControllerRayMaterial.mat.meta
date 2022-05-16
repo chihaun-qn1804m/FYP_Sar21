@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:FYP SAR21/Assets/Oculus/Interaction/Runtime/Materials/OculusControllerRayMaterial.mat.meta
 guid: 953296ab6b035654b8377b21ca2f64e2
+=======
+guid: f4b49debff9d269449879fc6f5991a83
+>>>>>>> Stashed changes:FYP SAR21/Assets/Oculus/Interaction/Runtime/Materials/GrabDebugSphere.mat.meta
+=======
+guid: 953296ab6b035654b8377b21ca2f64e2
+>>>>>>> Stashed changes
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
