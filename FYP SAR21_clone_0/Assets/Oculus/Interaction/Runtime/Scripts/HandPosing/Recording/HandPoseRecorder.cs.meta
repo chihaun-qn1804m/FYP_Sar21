@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream:FYP SAR21/Assets/Oculus/Interaction/Runtime/Scripts/HandPosing/Recording/HandPoseRecorder.cs.meta
 guid: f0350d356fc9592468b162c8fcfbc055
-=======
-guid: 92b8a050249b4ea47b9da8fe38ed12a1
->>>>>>> Stashed changes:FYP SAR21/Assets/Oculus/Interaction/Editor/HandPosing/HandGrab/HandGrabPointEditor.cs.meta
-=======
-guid: f0350d356fc9592468b162c8fcfbc055
->>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

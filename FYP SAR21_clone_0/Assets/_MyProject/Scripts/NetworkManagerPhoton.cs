@@ -14,13 +14,10 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     public List<DefaultRoom> defaultRooms;
-<<<<<<< Updated upstream
    public GameObject roomUI;
    
-=======
    public GameObject canvas;
    public GameObject loading;
->>>>>>> Stashed changes
     public void ConnectToServer()
     {
         Debug.Log("testtt");
@@ -39,12 +36,9 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("We join the lobby");
-<<<<<<< Updated upstream
         roomUI.SetActive(true);
-=======
         loading.SetActive(false);
         canvas.SetActive(false);
->>>>>>> Stashed changes
     }
 
         
