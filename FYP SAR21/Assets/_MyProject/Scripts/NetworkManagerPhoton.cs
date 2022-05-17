@@ -15,8 +15,8 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     public List<DefaultRoom> defaultRooms;
-    public GameObject canvas;
-    public GameObject loading;
+   public GameObject canvas;
+   public GameObject loading;
     public void ConnectToServer()
     {
         Debug.Log("testtt");

@@ -10,7 +10,6 @@ public class NetworkPlayer : MonoBehaviour
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
-    public Transform body;
     private PhotonView photonView;
 
     private Transform headRig;
@@ -24,8 +23,8 @@ public class NetworkPlayer : MonoBehaviour
 
         XRRig rig = FindObjectOfType<XRRig>();
         headRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/CenterEyeAnchor");
-        leftHandRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/LeftHandAnchor");
-        rightHandRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/RightHandAnchor");
+        leftHandRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/LeftHandAnchor/LeftControllerAnchor/LeftController");
+        rightHandRig = rig.transform.Find("PlayerController/CameraRig/TrackingSpace/RightHandAnchor/RightControllerAnchor/RightController");
     }
 
     // Update is called once per frame

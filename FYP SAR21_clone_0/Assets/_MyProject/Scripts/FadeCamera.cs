@@ -35,6 +35,20 @@ public class FadeCamera : MonoBehaviour
         });
 
     }
+    public void onClickOffline()
+    {//set active canvas 
+        Canvas.SetActive(true);
+        var seq = LeanTween.sequence();
+        seq.append(2f);
+        seq.append(() => {
+            FadeInCam();//fade in camera after 2 seconds
+        });
+        seq.append(3f);
+        seq.append(() => {
+            FadeOutCam();//fade out camera after 3 seconds
+        });
+
+    }
 
     public void FadeInCam()
     {//set fade in timer
@@ -48,7 +62,16 @@ public class FadeCamera : MonoBehaviour
         // show canvas and fade set fade out timer and load to next scene
         Canvas.SetActive(true);
         LeanTween.alpha(_fadeScreenRectTransform, to: 1f, _fadeOutTime);
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Lobby 2");
+
+    }
+
+    public void FadeOutCamOffline()
+    {
+        // show canvas and fade set fade out timer and load to next scene
+        Canvas.SetActive(true);
+        LeanTween.alpha(_fadeScreenRectTransform, to: 1f, _fadeOutTime);
+        SceneManager.LoadScene("ProBuilder Lobby");
 
     }
 
