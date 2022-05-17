@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/BNG Framework/Integrations/Curved UI/CurvedUI.unitypackage.meta
+guid: da1b7a6353354f145b3dd1de33517f0f
+========
 guid: 96f2c2dd9f004a14eab5fec4d977bc55
+>>>>>>>> 10c947136a921d533f6e0ab4c44170a91f554917:FYP SAR21/Assets/_MyProject/Scenes/Lobby.unity.meta~merged
 DefaultImporter:
   externalObjects: {}
   userData: 
