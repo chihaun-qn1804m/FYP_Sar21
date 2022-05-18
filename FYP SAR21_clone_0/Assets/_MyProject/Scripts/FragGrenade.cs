@@ -34,7 +34,7 @@ public class FragGrenade : MonoBehaviour
             countdown -= Time.deltaTime;
             if (countdown <= 0f && !hasExploded)
             {
-                audio_clip.Play();
+                StartCoroutine(WaitAndDestroy());
                 Explode();
                 hasExploded = true;
             }
@@ -59,10 +59,13 @@ public class FragGrenade : MonoBehaviour
             //Damage
         }
 
-        while (!audio_clip.isPlaying)
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    IEnumerator WaitAndDestroy()
+    {
+        audio_clip.Play();
+        yield return new WaitForSeconds(1.0f); //float time in seconds
+        Destroy(gameObject);
     }
 
 }
