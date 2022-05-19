@@ -17,11 +17,13 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
     public List<DefaultRoom> defaultRooms;
    public GameObject canvas;
    public GameObject loading;
+   public GameObject connecting;
     public void ConnectToServer()
     {
         Debug.Log("testtt");
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Try Connect to Server...");
+        loading.SetActive(true);
     }
 
     public override void OnConnectedToMaster()
@@ -37,6 +39,7 @@ public class NetworkManagerPhoton : MonoBehaviourPunCallbacks
         Debug.Log("We join the lobby");
         loading.SetActive(false);
         canvas.SetActive(false);
+        connecting.SetActive(false);
     }
 
 
