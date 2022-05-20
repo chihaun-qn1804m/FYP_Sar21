@@ -19,7 +19,7 @@ namespace Eliot.AgentComponents
 		[SerializeField] private int _minDamage;
 		[SerializeField] private int _maxDamage;
 		[SerializeField] private float _speed = 1f;
-		[SerializeField] private float _lifeTime = 5f;
+		[SerializeField] private float _lifeTime = 4f;
 		[SerializeField] private bool _chaseTarget;
 		[SerializeField] private float _rotationSpeed = 5f;
 		[SerializeField] private bool _detachChildren;

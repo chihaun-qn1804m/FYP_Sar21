@@ -66,6 +66,13 @@ public class FadeCamera : MonoBehaviour
 
     }
 
+    public void FadetoLobby1()
+    {
+        Canvas.SetActive(true);
+        LeanTween.alpha(_fadeScreenRectTransform, to: 1f, _fadeOutTime);
+        SceneManager.LoadScene("Lobby");
+    }
+
     public void FadeOutCamOffline()
     {
         // show canvas and fade set fade out timer and load to next scene
@@ -97,5 +104,7 @@ public class FadeCamera : MonoBehaviour
         SceneManager.LoadScene("Menu 1");
 
     }
+
+
 
 }
