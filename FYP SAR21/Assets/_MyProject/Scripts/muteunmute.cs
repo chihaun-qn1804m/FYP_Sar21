@@ -21,7 +21,7 @@ public class muteunmute : MonoBehaviour
     public void muteToggleMasterLvl(bool muted)
     {
         if (muted) {
-            volumeslidervol.value = -70f;
+            volumeslidervol.value = -7000f;
             volumeslider.SetActive(false);
             volumeslider1.SetActive(false);
             volumeslider2.SetActive(false);
@@ -37,7 +37,7 @@ public class muteunmute : MonoBehaviour
     public void muteToggleBGMLvl(bool muted)
     {
         if (muted) {
-            volumeslider1vol.value = -70f;
+            volumeslider1vol.value = -7000f;
             volumeslider1.SetActive(false);
         }
         else {
@@ -48,7 +48,7 @@ public class muteunmute : MonoBehaviour
         public void muteToggleSFXLvl(bool muted)
     {
         if (muted) {
-            volumeslider2vol.value = -70f;
+            volumeslider2vol.value = -7000f;
             volumeslider2.SetActive(false);
         }
         else {
