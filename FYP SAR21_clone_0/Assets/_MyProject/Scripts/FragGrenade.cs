@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FragGrenade : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class FragGrenade : MonoBehaviour
     public float delay = 3f;
     public float radius = 5f;
     public float force = 700f;
+
+    public float Damage = 25f;
 
     public Transform Pin;
     public GameObject explosionEffect;
@@ -50,13 +53,12 @@ public class FragGrenade : MonoBehaviour
 
         foreach (Collider nearbyObject in colliders)
         {
-            //Add Force
+            //Damage
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                //rb.AddExplosionForce(force, transform.position, radius);
+                rb.AddExplosionForce(Damage, transform.position, radius);
             }
-            //Damage
         }
 
     }
