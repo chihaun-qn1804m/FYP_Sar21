@@ -2,7 +2,6 @@
 # Remove/modify this line if the repository is meant to be open-source
 *.* filter=git-crypt diff=git-crypt
 .gitattributes !filter !diff
-
 # These files are text and should be normalized (Convert crlf => lf)
 *.php text
 *.css text
@@ -14,7 +13,6 @@
 *.ini text
 *.inc text
 .htaccess text
-
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
 *.png binary
@@ -33,11 +31,9 @@
 *.7z binary
 *.ttf binary
 *.fbx binary
-
 # Auto detect text files and perform LF normalization
 # http://davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
 * text=auto
-
 # Documents
 *.doc  diff=astextplain
 *.DOC  diff=astextplain
@@ -49,3 +45,4 @@
 *.PDF  diff=astextplain
 *.rtf  diff=astextplain
 *.RTF  diff=astextplain
+*psd filter=lfs diff=lfs merge=lfs -text
