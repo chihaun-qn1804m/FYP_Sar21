@@ -1,42 +1,36 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;// Required when using Event data.
+using UnityEngine.EventSystems;
 
-public class Hovering : MonoBehaviour// required interface when using the OnPointerEnter method.
+public class Hovering : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject button1;
-    public GameObject button2;
-    public GameObject button3;
-    public GameObject button4;
+    public GameObject canvasimg;
+    public Sprite Onlineimg;
+    public Sprite Offlineimg;
+    public Sprite Settingimg;
+    //Detect if the Cursor starts to pass over the GameObject
 
-
-    //Do this when the cursor enters the rect area of this selectable UI object.
-
-    void OnMouseOver()
+   
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        //if (button == button1){
-        ////If your mouse hovers over the GameObject with the script attached, output this message
-        //    Debug.Log("Mouse is over button1");
-        //}
-        //if (button == button2){
-        ////If your mouse hovers over the GameObject with the script attached, output this message
-        //    Debug.Log("Mouse is over button2");
-        //}
-        //if (button == button3){
-        ////If your mouse hovers over the GameObject with the script attached, output this message
-        //    Debug.Log("Mouse is over button3");
-        //}
-        //if (button == button4){
-        ////If your mouse hovers over the GameObject with the script attached, output this message
-        //    Debug.Log("Mouse is over button4");
-        //}
-        Debug.Log("Mouse is over button1.");
-    }
-    void OnMouseExit()
-    {
-        //The mouse is no longer hovering over the GameObject so output this message each frame
-        Debug.Log("Mouse is no longer on GameObject.");
+        if (name == "Online") {
+            Debug.Log("Cursor Entering test");
+            canvasimg.GetComponent<Image>().sprite = Onlineimg;
+        }
+        if (name == "OFFLINE") {
+            canvasimg.GetComponent<Image>().sprite = Offlineimg;
+        }
+        if (name == "SETTINGS") {
+            canvasimg.GetComponent<Image>().sprite = Settingimg;
+        }
+        //Output to console the GameObject's name and the following message
+        Debug.Log("Cursor Entering " + name + " GameObject");
     }
 
+    //Detect when Cursor leaves the GameObject
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        //Output the following message with the GameObject's name
+        Debug.Log("Cursor Exiting " + name + " GameObject");
+    }
 }
