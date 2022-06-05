@@ -36,7 +36,7 @@ namespace BNG {
         public GameObject ShotgunShell;
 
         /// <summary>
-        /// Instantiate this if shotgun equipped
+        /// Instantiate this if rifle equipped
         /// </summary>
         public GameObject RifleClip;
 
@@ -145,10 +145,10 @@ namespace BNG {
             if(AmmoName.Contains("Shotgun")) {
                 CurrentShotgunShells++;
             }
-            else if (AmmoName.Contains("Rifle")) {
-                CurrentRifleClips--;
+            else if (AmmoName.Contains("SAR21")) { //Edited name
+                CurrentRifleClips++;               //Edited symbol
             }
-            else if (AmmoName.Contains("Pistol")) {
+            else if (AmmoName.Contains("GlockP80")) { //Edited name
                 CurrentPistolClips++;
             }
         }
