@@ -1,13 +1,36 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;// Required when using Event data.
+using UnityEngine.EventSystems;
 
-public class Hovering : MonoBehaviour, IPointerEnterHandler// required interface when using the OnPointerEnter method.
+public class Hovering : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    //Do this when the cursor enters the rect area of this selectable UI object.
-    public void OnPointerEnter(PointerEventData eventData)
+    public GameObject canvasimg;
+    public Sprite Onlineimg;
+    public Sprite Offlineimg;
+    public Sprite Settingimg;
+    //Detect if the Cursor starts to pass over the GameObject
+
+   
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        Debug.Log("The cursor entered the selectable UI element."+ eventData);
+        if (name == "Online") {
+            Debug.Log("Cursor Entering test");
+            canvasimg.GetComponent<Image>().sprite = Onlineimg;
+        }
+        if (name == "OFFLINE") {
+            canvasimg.GetComponent<Image>().sprite = Offlineimg;
+        }
+        if (name == "SETTINGS") {
+            canvasimg.GetComponent<Image>().sprite = Settingimg;
+        }
+        //Output to console the GameObject's name and the following message
+        Debug.Log("Cursor Entering " + name + " GameObject");
+    }
+
+    //Detect when Cursor leaves the GameObject
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        //Output the following message with the GameObject's name
+        Debug.Log("Cursor Exiting " + name + " GameObject");
     }
 }
