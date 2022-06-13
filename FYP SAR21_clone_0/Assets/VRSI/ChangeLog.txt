@@ -1,0 +1,62 @@
+
+==============
+VRSI 1.2
+==============
+
+1) Added Support to VRSI Creation Studio To Render High-Quality PC & MOBILE Ready Billboards. You can now toggle this option as a new Variant. There are also numerous new shader choices available for PC & MOBILE variants. More PC & MOBILE features and shaders are planned for next release.
+
+2) We are introducing the all new VRSI_CREATOR_MULTIVIEW option in this release (Located In VRSI_CREATOR_START_HERE folder). VRSI_CREATOR_MULTIVIEW simplifies the process of creating VRSI's that have distinct number of views (Multi-View).
+
+Multi-View Creation Process is essentially the same as a regular VRSI with the added option of view Count. This is the number of distict views in 360 Degrees around the object. There are also, accompanying shader options available in the Resources library.
+
+ SetGlobalCamPos.cs is a new script required by Multi-View Renderer.
+ TeddyBear Asset is now included in the resources folder, also used in VRSI_CREATOR_MULTIVIEW
+
+3) All VRSI shaders have been updated to correctly support Single-Pass Stereo Rendering Mode in all VR modes including SteamVR.
+
+4) Various Code Fixes and new supporting assets included
+
+5) NEW Specular shader added to STATIC VRSI's, great for assets requiring Specular highlight such as props and rocks (complete PBR solution is coming soon)
+
+6) Documentation update for Multi-View Creation process and PC & Mobile Use.
+
+
+
+
+
+==============
+VRSI 1.1
+==============
+
+1) Added two new demos 
+
+** MultiView_VRSI_Demo_Experimental **
+
+This is a basic demo of Upcoming feature called Multi-View VRSI or MV-VRSI. The demo shows a Teddy bear with 16 VRSI packed into a single Texture Array. This allows
+the VRSI to have multiple view points, you can essentially walk around it. We will include a new Tool in the next release of VRSI to make it simple to create Multi-View VRSI's.
+
+
+** VRSI_LOD_Demo **
+
+This demo show how you can easly replace the traditional billboards in LOD groups with VRSI alternative!. There are over 7000 Trees in the scene, that are GPU instanced.
+
+2) Clean-up of VRSI Shaders and new Specular VRSI shaders added.
+
+3) Two new VRSI's have been added to the VRSI_Examples
+
+Teddy
+PineTree (The original 3D version has over 700K triangles)
+
+4) Added vrsiCamFacing_MSAA_DIRECTIONAL_BARE shader
+
+This shader had no Wind or Color Variation support, so it's bare minimum. More Variants of Bare shaders will be released in the next update
+
+5) Import Assist Has Been Updated
+
+
+
+
+
+
+
+
