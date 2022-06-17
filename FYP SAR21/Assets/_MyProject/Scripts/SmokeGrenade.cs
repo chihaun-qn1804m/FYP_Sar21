@@ -35,7 +35,7 @@ public class SmokeGrenade : MonoBehaviour
         }
     }
 
-    void Explode ()
+    private void Explode ()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
 
