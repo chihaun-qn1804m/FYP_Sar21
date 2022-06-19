@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 76a15a9c294875848a5efa7a1511e963
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {fileID: 2800000, guid: 400a9a0515468594997165b1aa51f32d, type: 3}
+  - _RGBAMaskA: {fileID: 2800000, guid: 42a1b663743ff5248a4855153721288b, type: 3}
+  - _RGBAMaskB: {fileID: 2800000, guid: 94996953678af9343a0fec222ae81fac, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
