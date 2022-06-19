@@ -47,7 +47,7 @@ public class FragGrenade : MonoBehaviour
 
     void Explode ()
     {
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
