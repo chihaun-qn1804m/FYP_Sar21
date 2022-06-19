@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b1d2e809ba19a294591e1447f1115ace
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _NormalGood: {fileID: 2800000, guid: 8aab7f8423361ec4cb1daf1ebd5a78d7, type: 3}
+  - _NormalDamage: {fileID: 2800000, guid: 354fbdac97090f6459e46bb63a83353a, type: 3}
+  - _RGBAMaskA: {fileID: 2800000, guid: 6afe04ce43211ab4485f54e3c5396a55, type: 3}
+  - _MainTex: {fileID: 2800000, guid: 82be22460a6b51b4290f4e8782e70cef, type: 3}
+  - _RGBAMaskC: {fileID: 2800000, guid: a82b87e49cd04f84da5b9c8e6a307c18, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

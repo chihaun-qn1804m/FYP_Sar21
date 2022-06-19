@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 391ce1576fa7d8e44bd387197d323242
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex1: {fileID: 2800000, guid: 42e76383800765b4883fbf88468d3d60, type: 3}
+  - _MaskB: {fileID: 2800000, guid: 5b71a3cf759201643b7d66aa9084dbd4, type: 3}
+  - _DBK_Brick_Rubble_Tile_NM: {fileID: 2800000, guid: 7b511ab90838e7242a50fcf139971129,
+      type: 3}
+  - _DetailsNM: {fileID: 2800000, guid: 4ea5083d09e1aa747b5ad9a32ad2cb74, type: 3}
+  - _MainTex: {fileID: 2800000, guid: fb0e05ef0dc56c643af47507dafa28c9, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
