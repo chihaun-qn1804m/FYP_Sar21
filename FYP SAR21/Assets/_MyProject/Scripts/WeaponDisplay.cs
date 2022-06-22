@@ -11,24 +11,38 @@ public class WeaponDisplay : MonoBehaviour
     public GameObject Rifle;
     public GameObject Pistol;
 
-    public GameObject WeaponUI;
     public Text UIText;
-    private string WeaponName;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        WeaponName = UIText.ToString();
-        Debug.Log(WeaponName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnChange()
     {
-        if(WeaponName == "SAR21")
+        if(UIText.text == "SAR21")
         {
-            Debug.Log("Rifle");
+            Rifle.SetActive(true);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isRifle", true);
+            anim.SetBool("isPistol", false);
+        }
+        else if(UIText.text == "GlockP80")
+        {
+            Rifle.SetActive(false);
+            Pistol.SetActive(true);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isRifle", false);
+            anim.SetBool("isPistol", true);
+        }
+        else
+        {
+            Rifle.SetActive(false);
+            Pistol.SetActive(false);
+            anim.SetBool("isIdle", true);
+            anim.SetBool("isPistol", false);
+            anim.SetBool("isRifle", false);
         }
     }
 
