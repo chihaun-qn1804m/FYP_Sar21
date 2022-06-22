@@ -3147,7 +3147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 16.737078}
+  m_AnchoredPosition: {x: 0, y: -0.00022972822}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &89607190
@@ -9950,8 +9950,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1921273236}
   m_HandleRect: {fileID: 1921273235}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.7712233
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -43789,13 +43789,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: -1
-  m_MinHeight: -1
-  m_PreferredWidth: 630
-  m_PreferredHeight: -1
-  m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
-  m_LayoutPriority: 1
+  m_MinWidth: 0
+  m_MinHeight: 0
+  m_PreferredWidth: 0
+  m_PreferredHeight: 0
+  m_FlexibleWidth: 0
+  m_FlexibleHeight: 0
+  m_LayoutPriority: 0
 --- !u!114 &1305807630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51583,6 +51583,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwatGuyModified
       objectReference: {fileID: 0}
+    - target: {fileID: 1346009539114114310, guid: aaa14f4078887a841ab39c5429ad5a8b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cdbf3bc0199a24842a39067fc356c8f9, type: 2}
     - target: {fileID: 1866227644855437247, guid: aaa14f4078887a841ab39c5429ad5a8b,
         type: 3}
       propertyPath: m_RootOrder
@@ -51688,7 +51693,6 @@ MonoBehaviour:
   Player: {fileID: 1567942886}
   Rifle: {fileID: 1127024718}
   Pistol: {fileID: 1983580749}
-  WeaponUI: {fileID: 0}
   UIText: {fileID: 2084771906}
 --- !u!1 &1574681149
 GameObject:
