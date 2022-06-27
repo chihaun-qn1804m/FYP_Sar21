@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b6a9fb010fd34904196a8f41c3f63a9d
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _DrywallNM: {fileID: 2800000, guid: 627acaa140421924586f777a2c9b082e, type: 3}
+  - _DrywallDamageNM: {fileID: 2800000, guid: 627acaa140421924586f777a2c9b082e, type: 3}
+  - _RGBAMaskB: {fileID: 2800000, guid: 1e202a45b34cf0a40a1bbdd395ef58be, type: 3}
+  - _MainTex: {fileID: 2800000, guid: bb0f9730de8f0ca408817cf80c16d43b, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

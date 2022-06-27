@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c56e4e6903ae43c43a19818c810d9797
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _GlassNM: {fileID: 2800000, guid: 9297249ecc862d24d9d18b58ff475d1d, type: 3}
+  - _Wall: {fileID: 2800000, guid: 254607d38a149b34686722576dbdcc96, type: 3}
+  - _Back: {fileID: 2800000, guid: 254607d38a149b34686722576dbdcc96, type: 3}
+  - _Floor: {fileID: 2800000, guid: f361abd048ecd7946beef104952d0cb8, type: 3}
+  - _Ceiling: {fileID: 2800000, guid: aec6a9728174f4345a2499e67f3d199b, type: 3}
+  - _MainTex: {fileID: 2800000, guid: bfbde71c1a80a6f448fd18fc39306db8, type: 3}
+  - _ColorTheme: {fileID: 2800000, guid: cd4b5d8aeef219c4bafd11ce2d4d5525, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
