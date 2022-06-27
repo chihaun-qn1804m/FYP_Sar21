@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bea1cae23c1bf1b41bc70b8e490dd22d
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _WallpaperNM: {fileID: 2800000, guid: 5a27fac40c9b3844c8307dd41bde1736, type: 3}
+  - _WallpaperDamageNM: {fileID: 2800000, guid: 0da19aae1d657d543b1ed240be84f780,
+      type: 3}
+  - _RGBA_Mask_A: {fileID: 2800000, guid: e6ac9406856f8bf4e85d66e726dbe060, type: 3}
+  - _MainTex: {fileID: 2800000, guid: be41953d2ca4b0b4f89e06fdbeeda334, type: 3}
+  - _ColorTheme: {fileID: 2800000, guid: a4547a6a35e23814ab82698a0f3f7d4a, type: 3}
+  - _PatternTexture: {fileID: 2800000, guid: 1676207b8d1aab0408ea1a16aa263bfc, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
