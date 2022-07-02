@@ -43,11 +43,16 @@ namespace BNG {
         /// <summary>
         /// Amount of Pistol Clips currently available
         /// </summary>
-        public int CurrentPistolClips = 5;
+        public int CurrentPistolClips = 10;
 
-        public int CurrentRifleClips = 5;
+        public int CurrentRifleClips = 10;
 
         public int CurrentShotgunShells = 30;
+
+        void Start()
+        {
+            Debug.Log(CurrentRifleClips);
+        }
 
         // Update is called once per frame
         void Update() {
