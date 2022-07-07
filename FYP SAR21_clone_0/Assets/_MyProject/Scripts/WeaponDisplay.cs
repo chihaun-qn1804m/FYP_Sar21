@@ -18,18 +18,21 @@ public class WeaponDisplay : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-
+    
     public void OnChange()
     {
-        if(UIText.text == "SAR21")
+        if (UIText.text == "SAR21")
         {
+            transform.localRotation = Quaternion.Euler(0, 90, 0);
             Rifle.SetActive(true);
+            Pistol.SetActive(false);
             anim.SetBool("isIdle", false);
             anim.SetBool("isRifle", true);
             anim.SetBool("isPistol", false);
         }
         else if(UIText.text == "GlockP80")
         {
+            transform.localRotation = Quaternion.Euler(0, 209, 0);
             Rifle.SetActive(false);
             Pistol.SetActive(true);
             anim.SetBool("isIdle", false);
@@ -38,6 +41,7 @@ public class WeaponDisplay : MonoBehaviour
         }
         else
         {
+            transform.localRotation = Quaternion.Euler(0, 209, 0);
             Rifle.SetActive(false);
             Pistol.SetActive(false);
             anim.SetBool("isIdle", true);
