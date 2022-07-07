@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SmokeGrenade : MonoBehaviour
 {
+    [SerializeField] private AudioSource audio_clip;
+
     public float delay = 3f;
 
     public Transform Pin;
@@ -29,6 +31,7 @@ public class SmokeGrenade : MonoBehaviour
             countdown -= Time.deltaTime;
             if (countdown <= 0f && !hasExploded)
             {
+                StartCoroutine(WaitAndDestroy());
                 Explode();
                 hasExploded = true;
             }
@@ -39,6 +42,13 @@ public class SmokeGrenade : MonoBehaviour
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
 
+    }
+
+    IEnumerator WaitAndDestroy()
+    {
+        audio_clip.Play();
+        yield return new WaitForSeconds(30.0f); //float time in seconds
         Destroy(gameObject);
     }
+
 }

@@ -31021,6 +31021,7 @@ GameObject:
   - component: {fileID: 2458493980243403812}
   - component: {fileID: 2458493980243403811}
   - component: {fileID: 2458493980243403810}
+  - component: {fileID: 2458493980243403815}
   m_Layer: 0
   m_Name: M18_Smoke_Grenade (1)
   m_TagString: Untagged
@@ -31062,6 +31063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfa4e89c50d5f542b2d2491e45c0e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_clip: {fileID: 2458493980243403815}
   delay: 5
   Pin: {fileID: 367201388009164110}
   explosionEffect: {fileID: 1471045523484911029, guid: 62b53ab5a5ac94b44b639a2e2a90cd5d,
@@ -31167,6 +31169,103 @@ CapsuleCollider:
   m_Height: 0.1375272
   m_Direction: 1
   m_Center: {x: 0, y: -0.022444548, z: -0.0011543334}
+--- !u!82 &2458493980243403815
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458493980243403809}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5871269661969032458, guid: 185b7e20ea584994fafaab7cc797a5f4,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 9d9c14639d44a5f4ca83bba653fa55f1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &2469797939269156388
 Transform:
   m_ObjectHideFlags: 0
@@ -39251,6 +39350,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GrenadeM67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454338816306772233, guid: 689e7722e1bdd524f9a3d819094c1144,
+        type: 3}
+      propertyPath: m_BreakForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454338816306772233, guid: 689e7722e1bdd524f9a3d819094c1144,
+        type: 3}
+      propertyPath: m_BreakTorque
+      value: Infinity
       objectReference: {fileID: 0}
     - target: {fileID: 4463808680684933596, guid: 689e7722e1bdd524f9a3d819094c1144,
         type: 3}
@@ -49473,7 +49582,7 @@ FixedJoint:
   m_GameObject: {fileID: 245268538731613487}
   m_ConnectedBody: {fileID: 2458493980243403813}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 200
+  m_BreakForce: 500
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -80250,7 +80359,7 @@ FixedJoint:
   m_GameObject: {fileID: 7597345623447905090}
   m_ConnectedBody: {fileID: 7834504753550210749}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 200
+  m_BreakForce: 500
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
