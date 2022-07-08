@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class FragGrenade : MonoBehaviour
 {
-    [SerializeField] private AudioSource audio_clip;
+    [SerializeField] private AudioSource Explode_clip;
+    [SerializeField] private AudioSource Pin_clip;
 
 
     public float delay = 3f;
@@ -19,6 +20,7 @@ public class FragGrenade : MonoBehaviour
 
     float countdown;
     bool hasExploded = false;
+    bool pinIsPulled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,13 @@ public class FragGrenade : MonoBehaviour
         if (!joint)
         {
             Pin.parent = null;
+            pinIsPulled = true;
+
+            if(countdown >= 5f && pinIsPulled)
+            {
+                Pin_clip.Play();
+                pinIsPulled = false;
+            }
 
             countdown -= Time.deltaTime;
             if (countdown <= 0f && !hasExploded)
@@ -65,7 +74,7 @@ public class FragGrenade : MonoBehaviour
 
     IEnumerator WaitAndDestroy()
     {
-        audio_clip.Play();
+        Explode_clip.Play();
         yield return new WaitForSeconds(1.0f); //float time in seconds
         Destroy(gameObject);
     }
