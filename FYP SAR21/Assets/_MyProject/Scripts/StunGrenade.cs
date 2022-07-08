@@ -7,6 +7,7 @@ public class StunGrenade : MonoBehaviour
     #region Variables 
 
     [SerializeField] private RectTransform _fadeScreenRectTransform;
+    [SerializeField] private AudioSource audio_clip_ringing;
 
     [Header("Fade Settings")]
     [SerializeField] [Range(0.1f, 9.0f)] private float _fadeInTime = 1.0f;
@@ -52,12 +53,14 @@ public class StunGrenade : MonoBehaviour
     {
         if (checkVisibility())
         {
+            audio_clip_ringing.Play();
             Canvas.SetActive(true);
             var seq = LeanTween.sequence();
-            seq.append(3f);
+            seq.append(2f);
             seq.append(() => {
                 LeanTween.alpha(_fadeScreenRectTransform, to: 0f, _fadeOutTime);
             });
+            seq.append(1f);
         }
         else
         {
