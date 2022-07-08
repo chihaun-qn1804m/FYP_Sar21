@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Snack_machines.meta
+guid: 9c4975145c6ffa340a93907b167c3269
+folderAsset: yes
+========
 guid: 1c28cf5aa79b49e4f9785011c9a9402e
+>>>>>>>> 77f3f4a67b3514c0c18d60c124142a3e12d9fa61:FYP SAR21/Assets/BNG Framework/Integrations/Pico/Pico.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
