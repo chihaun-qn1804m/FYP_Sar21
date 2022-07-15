@@ -28,7 +28,7 @@ public class SplashMenuLT : MonoBehaviour
     protected void Awake()
     {
         // transform splash screen 
-        _splashScr.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+        _splashScr.transform.localScale = new Vector3(0f, 0f, 0f);
         //get splash screen transform values
         _splashScrRectTransform = _splashScr.GetComponent<RectTransform>();
     }
@@ -56,7 +56,7 @@ public class SplashMenuLT : MonoBehaviour
 
     private void FadeInLogo()
     {//fade in logo time and scale
-        LeanTween.scaleX(_splashScr, 1f, _fadeInTime);
+        LeanTween.scaleX(_splashScr, 0.7f, _fadeInTime);
         LeanTween.scaleY(_splashScr, 1f, _fadeInTime);
         LeanTween.alpha(_splashScrRectTransform, 1f, _fadeInTime);
     }
