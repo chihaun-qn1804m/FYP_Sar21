@@ -16,9 +16,6 @@ public class SplashMenuLT : MonoBehaviour
     [SerializeField] [Range(0.1f, 9.0f)] private float _fadeInTime = 1.0f;
     [SerializeField] [Range(0.1f, 9.0f)] private float _fadeOutTime = 1.0f;
     
-    [Header("Decal on Floor")]
-    //get decal
-    [SerializeField] private GameObject _decalJetHammer;
     //get main menu panel
     [SerializeField] private CanvasGroup _mainMenuPanel;
     //get splash screen
@@ -73,7 +70,6 @@ public class SplashMenuLT : MonoBehaviour
 
     private void ShowDecalAndMenu()
     {//show decal and menu and timer
-        _decalJetHammer.SetActive(true);
         gameTitle.SetActive(true);
         playerModel.SetActive(true);
         LeanTween.alphaCanvas(_mainMenuPanel, 30f, 2f);
