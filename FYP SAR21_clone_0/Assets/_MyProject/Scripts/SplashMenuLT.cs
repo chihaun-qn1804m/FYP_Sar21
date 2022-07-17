@@ -16,9 +16,6 @@ public class SplashMenuLT : MonoBehaviour
     [SerializeField] [Range(0.1f, 9.0f)] private float _fadeInTime = 1.0f;
     [SerializeField] [Range(0.1f, 9.0f)] private float _fadeOutTime = 1.0f;
     
-    [Header("Decal on Floor")]
-    //get decal
-    [SerializeField] private GameObject _decalJetHammer;
     //get main menu panel
     [SerializeField] private CanvasGroup _mainMenuPanel;
     //get splash screen
@@ -31,7 +28,7 @@ public class SplashMenuLT : MonoBehaviour
     protected void Awake()
     {
         // transform splash screen 
-        _splashScr.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+        _splashScr.transform.localScale = new Vector3(0f, 0f, 0f);
         //get splash screen transform values
         _splashScrRectTransform = _splashScr.GetComponent<RectTransform>();
     }
@@ -59,7 +56,7 @@ public class SplashMenuLT : MonoBehaviour
 
     private void FadeInLogo()
     {//fade in logo time and scale
-        LeanTween.scaleX(_splashScr, 1f, _fadeInTime);
+        LeanTween.scaleX(_splashScr, 0.7f, _fadeInTime);
         LeanTween.scaleY(_splashScr, 1f, _fadeInTime);
         LeanTween.alpha(_splashScrRectTransform, 1f, _fadeInTime);
     }
@@ -73,7 +70,6 @@ public class SplashMenuLT : MonoBehaviour
 
     private void ShowDecalAndMenu()
     {//show decal and menu and timer
-        _decalJetHammer.SetActive(true);
         gameTitle.SetActive(true);
         playerModel.SetActive(true);
         LeanTween.alphaCanvas(_mainMenuPanel, 30f, 2f);

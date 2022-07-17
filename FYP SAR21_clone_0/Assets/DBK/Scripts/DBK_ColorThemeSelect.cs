@@ -18,7 +18,7 @@ public class DBK_ColorThemeSelect : MonoBehaviour {
 
     void OnEnable()
     {
-        ApplyProperties();
+        //ApplyProperties();
     }
 
     void ApplyProperties()
@@ -35,7 +35,7 @@ public class DBK_ColorThemeSelect : MonoBehaviour {
 
     void OnValidate()
     {
-        ApplyProperties();
+        //ApplyProperties();
     }
 
     int ReturnOrnamentRow(int index)
