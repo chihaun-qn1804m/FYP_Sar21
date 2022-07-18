@@ -36,23 +36,18 @@ namespace BNG {
         public GameObject ShotgunShell;
 
         /// <summary>
-        /// Instantiate this if rifle equipped
+        /// Instantiate this if shotgun equipped
         /// </summary>
         public GameObject RifleClip;
 
         /// <summary>
         /// Amount of Pistol Clips currently available
         /// </summary>
-        public int CurrentPistolClips = 10;
+        public int CurrentPistolClips = 5;
 
-        public int CurrentRifleClips = 10;
+        public int CurrentRifleClips = 5;
 
         public int CurrentShotgunShells = 30;
-
-        void Start()
-        {
-            Debug.Log(CurrentRifleClips);
-        }
 
         // Update is called once per frame
         void Update() {
@@ -150,10 +145,10 @@ namespace BNG {
             if(AmmoName.Contains("Shotgun")) {
                 CurrentShotgunShells++;
             }
-            else if (AmmoName.Contains("SAR21")) { //Edited name
-                CurrentRifleClips++;               //Edited symbol
+            else if (AmmoName.Contains("Rifle")) {
+                CurrentRifleClips--;
             }
-            else if (AmmoName.Contains("GlockP80")) { //Edited name
+            else if (AmmoName.Contains("Pistol")) {
                 CurrentPistolClips++;
             }
         }

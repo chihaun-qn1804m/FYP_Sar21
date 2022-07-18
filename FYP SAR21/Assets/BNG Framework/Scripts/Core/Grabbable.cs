@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Photon.Pun;
+
 namespace BNG {
     
     /// <summary>
     /// An object that can be picked up by a Grabber
     /// </summary>
     public class Grabbable : MonoBehaviour {
-        private PhotonView photonView;
 
         /// <summary>
         /// Is this object currently being held by a Grabber
@@ -480,7 +479,6 @@ namespace BNG {
         protected bool didParentHands = false;
 
         protected void Awake() {
-            photonView = GetComponent<PhotonView>();
             col = GetComponent<Collider>();
             rigid = GetComponent<Rigidbody>();
             input = InputBridge.Instance;
@@ -541,7 +539,6 @@ namespace BNG {
 
             if (BeingHeld) {
 
-                photonView.RequestOwnership();
                 // ResetLockResets();
 
                 // Something happened to our Grabber. Drop the item
