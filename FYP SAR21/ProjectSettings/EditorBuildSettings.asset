@@ -6,15 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Knife.PlayerController/Scenes/ExampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/BNG Framework/Scenes/XR Demo.unity
+    guid: a1360534006d3f845bc79b46b93cfec5
   - enabled: 1
     path: Assets/_MyProject/Scenes/SAR21.unity
     guid: f5ee69b0ee90cd942858a8f7ad1dd2af
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6b379919dcec89e4c95dc63446ed5485,
       type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 2ec24d39f7b5ac84aad7e5df7b4fd3ea,
+      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 7c0d65f8139523c47a3ac0b1587ccdf6,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8bd81bcb0864f1c47a7a7370f328c834,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 85fc116c3061a6243a8cb6c1437c0e94,
       type: 2}
     xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 76c528037da33504f813702ba965140a,
       type: 2}
