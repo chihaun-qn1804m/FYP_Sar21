@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Photon.Pun;
+namespace BNG
+{
 
-namespace BNG {
-    
     /// <summary>
     /// An object that can be picked up by a Grabber
     /// </summary>
-    public class Grabbable : MonoBehaviour {
+    public class Grabbable : MonoBehaviour
+    {
+        private PhotonView photonView;
+
         /// <summary>
         /// Is this object currently being held by a Grabber
         /// </summary>
         public bool BeingHeld = false;
-        private PhotonView photonView;
 
         /// <summary>
         /// Is this object currently being held by more than one Grabber
@@ -515,7 +517,8 @@ namespace BNG {
         }
         protected bool didParentHands = false;
 
-        protected void Awake() {
+        protected void Awake()
+        {
             photonView = GetComponent<PhotonView>();
             col = GetComponent<Collider>();
             rigid = GetComponent<Rigidbody>();
