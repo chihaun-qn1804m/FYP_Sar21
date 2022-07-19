@@ -17,6 +17,7 @@ using Facebook.WitAi.Data.Traits;
 using Facebook.WitAi.Lib;
 using Facebook.WitAi.Configuration;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 namespace Facebook.WitAi.Data.Configuration
@@ -24,59 +25,85 @@ namespace Facebook.WitAi.Data.Configuration
     public static class WitConfigurationUtility
     {
         #region ACCESS
+        // Return wit configs
+        public static WitConfiguration[] WitConfigs
+        {
+            get
+            {
+                // Reload if not setup
+                if (_witConfigs == null)
+                {
+                    ReloadConfigurationData();
+                }
+                // Force reload
+                if (_needsConfigReload)
+                {
+                    ReloadConfigurationData();
+                }
+                // Return config data
+                return _witConfigs;
+            }
+        }
         // Wit configuration assets
-        private static WitConfiguration[] witConfigs = null;
-        public static WitConfiguration[] WitConfigs => witConfigs;
+        private static WitConfiguration[] _witConfigs = null;
 
         // Wit configuration asset names
-        private static string[] witConfigNames = Array.Empty<string>();
-        public static string[] WitConfigNames => witConfigNames;
+        public static string[] WitConfigNames => _witConfigNames;
+        private static string[] _witConfigNames = Array.Empty<string>();
+
+        // Config reload
+        private static bool _needsConfigReload = false;
 
         // Has configuration
         public static bool HasValidCustomConfig()
         {
-            // Refresh list
-            ReloadConfigurationData();
             // Find a valid custom configuration
-            return Array.Exists(witConfigs, (c) => !c.isDemoOnly);
+            return Array.Exists(WitConfigs, (c) => !c.isDemoOnly);
+        }
+        // Enable config reload on next access
+        public static void NeedsConfigReload()
+        {
+            _needsConfigReload = true;
         }
         // Refresh configuration asset list
         public static void ReloadConfigurationData()
         {
+            // Reloaded
+            _needsConfigReload = false;
+
             // Find all Wit Configurations
+            List<WitConfiguration> found = new List<WitConfiguration>();
             string[] guids = AssetDatabase.FindAssets("t:WitConfiguration");
+            foreach (var guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                WitConfiguration config = AssetDatabase.LoadAssetAtPath<WitConfiguration>(path);
+                if (!config.isDemoOnly)
+                {
+                    found.Add(config);
+                }
+            }
 
             // Store wit configuration data
-            witConfigs = new WitConfiguration[guids.Length];
-            witConfigNames = new string[guids.Length];
-            for (int i = 0; i < guids.Length; i++)
+            _witConfigs = found.ToArray();
+            // Obtain all names
+            _witConfigNames = new string[_witConfigs.Length];
+            for (int i = 0; i < _witConfigs.Length; i++)
             {
-                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
-                witConfigs[i] = AssetDatabase.LoadAssetAtPath<WitConfiguration>(path);
-                witConfigNames[i] = witConfigs[i].name;
+                _witConfigNames[i] = _witConfigs[i].name;
             }
         }
         // Get configuration index
         public static int GetConfigurationIndex(WitConfiguration configuration)
         {
-            // Init if needed
-            if (witConfigs == null)
-            {
-                ReloadConfigurationData();
-            }
             // Search through configs
-            return Array.FindIndex(witConfigs, (checkConfig) => checkConfig == configuration );
+            return Array.FindIndex(WitConfigs, (checkConfig) => checkConfig == configuration );
         }
         // Get configuration index
         public static int GetConfigurationIndex(string configurationName)
         {
-            // Init if needed
-            if (witConfigs == null)
-            {
-                ReloadConfigurationData();
-            }
             // Search through configs
-            return Array.FindIndex(witConfigs, (checkConfig) => string.Equals(checkConfig.name, configurationName));
+            return Array.FindIndex(WitConfigs, (checkConfig) => string.Equals(checkConfig.name, configurationName));
         }
         // Get application id
         public static string GetAppID(WitConfiguration configuration)
@@ -95,7 +122,7 @@ namespace Facebook.WitAi.Data.Configuration
         {
             // Generate blank asset
             WitConfiguration configurationAsset = ScriptableObject.CreateInstance<WitConfiguration>();
-            configurationAsset.name = WitStyles.Texts.ConfigurationFileNameLabel;
+            configurationAsset.name = WitTexts.Texts.ConfigurationFileNameLabel;
             configurationAsset.clientAccessToken = string.Empty;
             // Create
             int index = SaveConfiguration(serverToken, configurationAsset);
@@ -106,31 +133,64 @@ namespace Facebook.WitAi.Data.Configuration
             // Return new index
             return index;
         }
-        // Save configuration to selected location
+        // Save configuration after determining path
         public static int SaveConfiguration(string serverToken, WitConfiguration configurationAsset)
         {
-            // Create
-            string path = EditorUtility.SaveFilePanel(WitStyles.Texts.ConfigurationFileManagerLabel, Application.dataPath, WitStyles.Texts.ConfigurationFileNameLabel, "asset");
-            if (!string.IsNullOrEmpty(path) && path.StartsWith(Application.dataPath))
+            // Determine root directory with selection if possible
+            string rootDirectory = Application.dataPath;
+            if (Selection.activeObject)
             {
-                // Create
-                path = path.Replace(Application.dataPath, "Assets");
-                AssetDatabase.CreateAsset(configurationAsset, path);
-                AssetDatabase.SaveAssets();
-
-                // Refresh configurations
-                ReloadConfigurationData();
-
-                // Get new index following reload
-                string name = System.IO.Path.GetFileNameWithoutExtension(path);
-                int index = GetConfigurationIndex(name);
-                witConfigs[index].SetServerToken(serverToken);
-                // Return index
-                return index;
+                // Get asset path
+                string selectedPath = AssetDatabase.GetAssetPath(Selection.activeObject);
+                // Only allow if in assets
+                if (selectedPath.StartsWith("Assets"))
+                {
+                    if (AssetDatabase.IsValidFolder(selectedPath))
+                    {
+                        rootDirectory = selectedPath;
+                    }
+                    else if (!string.IsNullOrEmpty(selectedPath))
+                    {
+                        rootDirectory = new System.IO.FileInfo(selectedPath).DirectoryName;
+                    }
+                }
             }
 
-            // Return new index
-            return -1;
+            // Determine save path
+            string savePath = EditorUtility.SaveFilePanel(WitTexts.Texts.ConfigurationFileManagerLabel, rootDirectory, WitTexts.Texts.ConfigurationFileNameLabel, "asset");
+            return SaveConfiguration(savePath, serverToken, configurationAsset);
+        }
+        // Save configuration to selected location
+        public static int SaveConfiguration(string savePath, string serverToken, WitConfiguration configurationAsset)
+        {
+            // Ensure valid save path
+            if (string.IsNullOrEmpty(savePath))
+            {
+                return -1;
+            }
+            // Must be in assets
+            string unityPath = savePath.Replace("\\", "/");
+            if (!unityPath.StartsWith(Application.dataPath))
+            {
+                Debug.LogError($"Configuration Utility - Cannot Create Configuration Outside of Assets Directory\nPath: {unityPath}");
+                return -1;
+            }
+
+            // Determine local unity path
+            unityPath = unityPath.Replace(Application.dataPath, "Assets");
+            AssetDatabase.CreateAsset(configurationAsset, unityPath);
+            AssetDatabase.SaveAssets();
+
+            // Refresh configurations
+            ReloadConfigurationData();
+
+            // Get new index following reload
+            string name = System.IO.Path.GetFileNameWithoutExtension(unityPath);
+            int index = GetConfigurationIndex(name);
+            _witConfigs[index].SetServerToken(serverToken);
+
+            // Return index
+            return index;
         }
         #endregion
 
@@ -151,25 +211,12 @@ namespace Facebook.WitAi.Data.Configuration
             // Invalid token
             if (!IsServerTokenValid(serverToken))
             {
-                SetServerTokenComplete(serverToken, "Invalid Token", onSetComplete);
+                SetServerTokenComplete(string.Empty, "", onSetComplete);
                 return;
             }
             // Perform a list app request to get app for token
             var listRequest = WitRequestFactory.ListAppsRequest(serverToken, 10000);
-            PerformRequest(listRequest, (response, onRequestComplete) =>
-            {
-                var applications = response.AsArray;
-                for (int i = 0; i < applications.Count; i++)
-                {
-                    if (applications[i]["is_app_for_token"].AsBool)
-                    {
-                        var application = WitApplication.FromJson(applications[i]);
-                        WitAuthUtility.SetAppServerToken(application.id, serverToken);
-                        break;
-                    }
-                }
-                onRequestComplete("");
-            }, (error) =>
+            PerformRequest(listRequest, (r, o) => ApplyAllApplicationData(serverToken, r, o), (error) =>
             {
                 SetServerTokenComplete(serverToken, error, onSetComplete);
             });
@@ -443,6 +490,32 @@ namespace Facebook.WitAi.Data.Configuration
             Log($"Request Begin\nType: {request}", false);
             request.Request();
         }
+        // Apply all application data
+        private static void ApplyAllApplicationData(string serverToken, WitResponseNode witResponse, Action<string> onComplete)
+        {
+            var applications = witResponse.AsArray;
+            for (int i = 0; i < applications.Count; i++)
+            {
+                // Get application
+                var application = WitApplication.FromJson(applications[i]);
+                string appID = application?.id;
+                // Apply app server token if applicable
+                if (applications[i]["is_app_for_token"].AsBool)
+                {
+                    WitAuthUtility.SetAppServerToken(appID, serverToken);
+                }
+                // Apply to configuration
+                int witConfigIndex = Array.FindIndex(WitConfigs, (configuration) => string.Equals(appID, configuration?.application?.id));
+                if (witConfigIndex != -1)
+                {
+                    WitConfiguration configuration = _witConfigs[witConfigIndex];
+                    configuration.application = application;
+                    EditorUtility.SetDirty(configuration);
+                    configuration.RefreshData();
+                }
+            }
+            onComplete("");
+        }
         // Apply application data
         private static void ApplyApplicationData(WitConfiguration configuration, WitResponseNode witResponse, Action<string> onComplete)
         {
@@ -471,8 +544,11 @@ namespace Facebook.WitAi.Data.Configuration
         private static void ApplyClientToken(WitConfiguration configuration, WitResponseNode witResponse, Action<string> onComplete)
         {
             var token = witResponse?["client_token"];
-            configuration.clientAccessToken = token;
-            EditorUtility.SetDirty(configuration);
+            if (!string.IsNullOrEmpty(token))
+            {
+                configuration.clientAccessToken = token;
+                EditorUtility.SetDirty(configuration);
+            }
             onComplete?.Invoke("");
         }
         // Apply intents

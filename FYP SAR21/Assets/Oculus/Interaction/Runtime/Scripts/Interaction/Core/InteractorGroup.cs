@@ -27,7 +27,6 @@ namespace Oculus.Interaction
     /// </summary>
     public class InteractorGroup : MonoBehaviour, IInteractor
     {
-        [FormerlySerializedAs("_interactorDrivers")]
         [SerializeField, Interface(typeof(IInteractor))]
         private List<MonoBehaviour> _interactors;
 
@@ -36,14 +35,18 @@ namespace Oculus.Interaction
         public bool IsRootDriver { get; set; } = true;
 
         private IInteractor _candidateInteractor = null;
-        private IInteractor _selectingInteractor = null;
+        private IInteractor _activeInteractor = null;
 
         [SerializeField, Interface(typeof(ICandidateComparer)), Optional]
         private MonoBehaviour _interactorComparer;
 
         public int MaxIterationsPerFrame = 3;
-
         protected ICandidateComparer CandidateComparer = null;
+
+        public event Action<InteractorStateChangeArgs> WhenStateChanged = delegate { };
+        public event Action WhenPreprocessed = delegate { };
+        public event Action WhenProcessed = delegate { };
+        public event Action WhenPostprocessed = delegate { };
 
         protected virtual void Awake()
         {
@@ -69,22 +72,46 @@ namespace Oculus.Interaction
             }
         }
 
-        public void UpdateInteractor()
+        public void Preprocess()
         {
             foreach (IInteractor interactor in Interactors)
             {
-                interactor.UpdateInteractor();
+                interactor.Preprocess();
             }
-            WhenInteractorUpdated();
+            WhenPreprocessed();
         }
 
-        public void UpdateCandidate()
+        public void Process()
+        {
+            if (_activeInteractor != null)
+            {
+                _activeInteractor.Process();
+            }
+            WhenProcessed();
+        }
+
+        public void Postprocess()
+        {
+            foreach (IInteractor interactor in Interactors)
+            {
+                interactor.Postprocess();
+            }
+
+            if (_activeInteractor != null && _activeInteractor.State == InteractorState.Disabled)
+            {
+                _activeInteractor = null;
+            }
+
+            WhenPostprocessed();
+        }
+
+        public void ProcessCandidate()
         {
             _candidateInteractor = null;
 
             foreach (IInteractor interactor in Interactors)
             {
-                interactor.UpdateCandidate();
+                interactor.ProcessCandidate();
 
                 if (interactor.HasCandidate)
                 {
@@ -99,7 +126,7 @@ namespace Oculus.Interaction
                 }
             }
 
-            if (_candidateInteractor == null)
+            if (_candidateInteractor == null && Interactors.Count > 0)
             {
                 _candidateInteractor = Interactors[Interactors.Count - 1];
             }
@@ -107,12 +134,11 @@ namespace Oculus.Interaction
 
         public void Enable()
         {
-            if (_candidateInteractor == null)
+            if (_activeInteractor == null)
             {
                 return;
             }
-            _candidateInteractor.Enable();
-            State = InteractorState.Normal;
+            _activeInteractor.Enable();
         }
 
         public void Disable()
@@ -127,51 +153,65 @@ namespace Oculus.Interaction
 
         public void Hover()
         {
-            if (_candidateInteractor == null)
+            if (State != InteractorState.Normal)
             {
                 return;
             }
 
-            _candidateInteractor.Hover();
+            _activeInteractor = _candidateInteractor;
+            _activeInteractor.Hover();
             State = InteractorState.Hover;
+        }
+
+        public void Unhover()
+        {
+            if (State != InteractorState.Hover)
+            {
+                return;
+            }
+
+            if (_activeInteractor != null)
+            {
+                _activeInteractor.Unhover();
+            }
+
+            _activeInteractor = null;
+
+            State = InteractorState.Normal;
         }
 
         public void Select()
         {
-            if (_selectingInteractor != null)
-            {
-                _selectingInteractor.Select();
-                return;
-            }
-
-            if (!ShouldSelect)
+            if (State != InteractorState.Hover)
             {
                 return;
             }
 
-            _selectingInteractor = _candidateInteractor;
-            _selectingInteractor.Select();
+            _activeInteractor.Select();
             State = InteractorState.Select;
         }
 
         public void Unselect()
         {
-            if (!ShouldUnselect)
+            if (State != InteractorState.Select)
             {
                 return;
             }
 
-            _selectingInteractor.Unselect();
-            _selectingInteractor = null;
-            _candidateInteractor = null;
+            if (_activeInteractor != null)
+            {
+                _activeInteractor.Unselect();
+            }
 
             State = InteractorState.Hover;
         }
 
-        public bool ShouldSelect => _candidateInteractor != null && _candidateInteractor.ShouldSelect;
+        public bool ShouldHover => _activeInteractor != null && _activeInteractor.ShouldHover;
 
-        public bool ShouldUnselect =>
-            _selectingInteractor != null && _selectingInteractor.ShouldUnselect;
+        public bool ShouldUnhover => _activeInteractor == null || _activeInteractor.ShouldUnhover;
+        public bool ShouldSelect => _activeInteractor != null && _activeInteractor.ShouldSelect;
+
+        public bool ShouldUnselect => _activeInteractor == null || _activeInteractor.ShouldUnselect;
 
         private void DisableAllInteractorsExcept(IInteractor enabledInteractor)
         {
@@ -182,20 +222,19 @@ namespace Oculus.Interaction
             }
         }
 
-        public int Identifier => _candidateInteractor != null
-            ? _candidateInteractor.Identifier
+        public int Identifier => _activeInteractor != null
+            ? _activeInteractor.Identifier
             : Interactors[Interactors.Count - 1].Identifier;
 
         public bool HasCandidate => _candidateInteractor != null && _candidateInteractor.HasCandidate;
 
         public object Candidate => HasCandidate ? _candidateInteractor.Candidate : null;
 
-        public bool HasInteractable =>
-            _candidateInteractor != null && _candidateInteractor.HasInteractable;
+        public bool HasInteractable => _activeInteractor != null &&
+                                       _activeInteractor.HasInteractable;
 
-        public bool HasSelectedInteractable => _selectingInteractor != null
-            ? _selectingInteractor.HasSelectedInteractable
-            : false;
+        public bool HasSelectedInteractable => State == InteractorState.Select &&
+                                               _activeInteractor.HasSelectedInteractable;
 
         private InteractorState _state = InteractorState.Normal;
 
@@ -222,9 +261,6 @@ namespace Oculus.Interaction
             }
         }
 
-        public event Action<InteractorStateChangeArgs> WhenStateChanged = delegate { };
-        public event Action WhenInteractorUpdated = delegate { };
-
         public virtual void AddInteractor(IInteractor interactor)
         {
             Interactors.Add(interactor);
@@ -234,7 +270,10 @@ namespace Oculus.Interaction
 
         public virtual void RemoveInteractor(IInteractor interactor)
         {
-            Interactors.Remove(interactor);
+            if (!Interactors.Remove(interactor))
+            {
+                return;
+            }
             _interactors.Remove(interactor as MonoBehaviour);
             interactor.IsRootDriver = true;
         }
@@ -267,35 +306,69 @@ namespace Oculus.Interaction
                 return;
             }
 
-            UpdateInteractor();
-            for (int i = 0; i < MaxIterationsPerFrame; i ++)
+            Preprocess();
+
+            InteractorState previousState = State;
+            for (int i = 0; i < MaxIterationsPerFrame; i++)
             {
-                if (ShouldSelect || State == InteractorState.Select)
+                if (State == InteractorState.Normal ||
+                    (State == InteractorState.Hover && previousState != InteractorState.Normal))
                 {
-                    Select();
-                    if (!ShouldUnselect)
+                    ProcessCandidate();
+                }
+
+                previousState = State;
+                Process();
+
+                if (State == InteractorState.Disabled)
+                {
+                    break;
+                }
+
+                if (State == InteractorState.Normal)
+                {
+                    if (_candidateInteractor != null && _activeInteractor != _candidateInteractor)
                     {
-                        return;
+                        _activeInteractor = _candidateInteractor;
+                        Enable();
+                        DisableAllInteractorsExcept(_activeInteractor);
                     }
-                    Unselect();
+
+                    if (ShouldHover)
+                    {
+                        Hover();
+                        continue;
+                    }
+                    break;
                 }
 
-                UpdateCandidate();
-                DisableAllInteractorsExcept(_candidateInteractor);
-                Enable();
-
-                Hover();
-
-                if (!HasInteractable)
+                if (State == InteractorState.Hover)
                 {
-                    return;
+                    if (ShouldSelect)
+                    {
+                        Select();
+                        continue;
+                    }
+                    if (ShouldUnhover)
+                    {
+                        Unhover();
+                        continue;
+                    }
+                    break;
                 }
 
-                if (!ShouldSelect)
+                if(State == InteractorState.Select)
                 {
-                    return;
+                    if (ShouldUnselect)
+                    {
+                        Unselect();
+                        continue;
+                    }
+                    break;
                 }
             }
+
+            Postprocess();
         }
 
         #region Inject

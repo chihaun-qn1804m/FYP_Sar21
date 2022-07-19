@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/Cube/Textures/CubeTextureBlue.tga.meta
+guid: 43555dceab73360449ec1697d122de98
+========
 guid: 0faa4dd921a67244ca24a86643ea3887
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,12 +36,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/Cube/Textures/CubeTextureBlue.tga.meta
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: -1
+    wrapV: -1
+    wrapW: -1
+========
     filterMode: 1
     aniso: 3
     mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -60,7 +73,10 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/Cube/Textures/CubeTextureBlue.tga.meta
+========
   ignorePngGamma: 0
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3

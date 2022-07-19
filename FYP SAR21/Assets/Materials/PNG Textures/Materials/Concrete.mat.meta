@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/SampleFramework/Usage/SceneManager/Materials/Ball Hidden.mat.meta
+guid: 89c1928405c346a4d954788744c0a706
+========
 guid: 2e95912ad948cf546bc474d29c3ca574
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/Materials/PNG Textures/Materials/Concrete.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

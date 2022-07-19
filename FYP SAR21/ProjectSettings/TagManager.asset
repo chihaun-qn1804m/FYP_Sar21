@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - SAR21
-  - ClingPoint
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -15,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - Cover
-  - Ignore Shot
-  - Cover Invisible
+  - Restricted
   - Player
-  - Enemy
-  - Bound
+  - Grabbable
   - DestroyItDebris
+  - 
+  - 
+  - 
   - 
   - 
   - 

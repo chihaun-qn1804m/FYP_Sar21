@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/ChessPiece/Materials.meta
+<<<<<<< HEAD
+guid: 4b9c90e1be92880468b962f8d74c182c
+=======
+guid: 8bffcd86b080df643a5b3f9a7126fcdc
+>>>>>>> 5dd55cae9fc6153e94273a080116cc857e4fbd2e
+========
 guid: aa790f8e5b461bd479aa956aca3eb93f
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/Plugins/RootMotion/FinalIK/_DEMOS/Assets/Environments/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
