@@ -7,7 +7,10 @@ PhysicsManager:
   m_Gravity: {x: 0, y: -7.81, z: 0}
   m_DefaultMaterial: {fileID: 0}
   m_BounceThreshold: 1.875
+<<<<<<< HEAD
   m_DefaultMaxDepenetrationVelocity: 10
+=======
+>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8
   m_SleepThreshold: 0.005
   m_DefaultContactOffset: 0.001
   m_DefaultSolverIterations: 6

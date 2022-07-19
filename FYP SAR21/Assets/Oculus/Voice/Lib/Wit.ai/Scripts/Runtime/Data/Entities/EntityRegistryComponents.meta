@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Voice/Lib/Wit.ai/Scripts/Runtime/Data/Entities/EntityRegistryComponents.meta
 guid: 6b9f5c6540348cd41a3f48d0e20057db
+=======
+guid: d0de2aae0825a484590cd61e9325accd
+>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/Eliot AI/1_Tutorials And Demo.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

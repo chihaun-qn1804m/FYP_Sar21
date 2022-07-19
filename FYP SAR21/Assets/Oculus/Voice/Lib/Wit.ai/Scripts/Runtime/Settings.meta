@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Voice/Lib/Wit.ai/Scripts/Runtime/Settings.meta
 guid: c783397bcefed814f982e2d39926e98b
+========
+guid: 605f1736b6784eb47a5bad8057de16e3
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/BNG Framework/Integrations/SteamVR.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

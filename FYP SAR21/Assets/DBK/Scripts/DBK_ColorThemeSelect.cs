@@ -18,7 +18,7 @@ public class DBK_ColorThemeSelect : MonoBehaviour {
 
     void OnEnable()
     {
-        ApplyProperties();
+        //ApplyProperties();
     }
 
     void ApplyProperties()
