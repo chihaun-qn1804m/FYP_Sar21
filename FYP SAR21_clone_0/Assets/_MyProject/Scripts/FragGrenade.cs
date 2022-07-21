@@ -35,6 +35,7 @@ public class FragGrenade : MonoBehaviour
         if (!joint)
         {
             Pin.parent = null;
+            Pin.GetComponent<Collider>().enabled = false;
             pinIsPulled = true;
 
             if(countdown >= 5f && pinIsPulled)

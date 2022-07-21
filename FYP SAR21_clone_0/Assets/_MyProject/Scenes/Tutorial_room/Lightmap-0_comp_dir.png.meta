@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/groundBake.png.meta
+guid: 83253f04135590d4590783d7c3fdd99e
+========
 guid: f2b7691a511ff564091f17925aafe36e
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_dir.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,11 +37,19 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/groundBake.png.meta
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+========
     aniso: 3
     mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_dir.png.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50

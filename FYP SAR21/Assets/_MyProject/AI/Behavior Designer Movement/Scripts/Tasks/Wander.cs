@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tasks.Movement
 {
@@ -20,13 +21,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedFloat maxPauseDuration = 0;
         [Tooltip("The maximum number of retries per tick (set higher if using a slow tick time)")]
         public SharedInt targetRetries = 1;
-
+        Animator animator;
+        NavMeshAgent agent;
         private float pauseTime;
         private float destinationReachTime;
 
+        public override void OnStart() {
+            base.OnStart();
+            agent=GetComponent<NavMeshAgent>();
+            animator=GetComponent<Animator>();
+        }
         // There is no success or fail state with wander - the agent will just keep wandering
         public override TaskStatus OnUpdate()
         {
+            animator.SetFloat("Speed", agent.velocity.magnitude);
             if (HasArrived()) {
                 // The agent should pause at the destination only if the max pause duration is greater than 0
                 if (maxPauseDuration.Value > 0) {

@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: d4d7fbdba80f539408fe2399fcbaf295
+<<<<<<<< HEAD:FYP SAR21/Assets/Eliot AI/1_Tutorials And Demo/1_First Person Shooter/Scenes.meta
+guid: d22f20a0973366746a0f0e2e6c02f2e0
 folderAsset: yes
+========
+guid: 4ee2a082a0e621b49ab01667c66f1599
+>>>>>>>> 4b7e663c32a3e085b646b6af901e28aa2de3185d:FYP SAR21/Assets/Oculus/Interaction/Samples/Scenes/Examples/GestureExamples.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -12,7 +12,7 @@ permissions and limitations under the License.
 
 using UnityEngine;
 
-namespace Oculus.Interaction.HandPosing
+namespace Oculus.Interaction.HandGrab
 {
     /// <summary>
     /// This IPoseMovement constantly moves the pose at a fixed rate
@@ -74,7 +74,7 @@ namespace Oculus.Interaction.HandPosing
 
         public void MoveTo(Pose target)
         {
-            _startTime = Time.realtimeSinceStartup;
+            _startTime = Time.time;
             _localTarget = ToLocal(target);
         }
 
@@ -92,7 +92,7 @@ namespace Oculus.Interaction.HandPosing
         public void Tick()
         {
 
-            float now = Time.realtimeSinceStartup;
+            float now = Time.time;
             float delta = (now - _startTime) * _speed;
             _startTime = now;
 

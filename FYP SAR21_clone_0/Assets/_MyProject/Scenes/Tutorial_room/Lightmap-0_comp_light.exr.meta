@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/furnitureBakeLight.png.meta
+guid: 9bec27491f84ddc4d9151c7eb2487b59
+========
 guid: 0faa4dd921a67244ca24a86643ea3887
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,11 +37,19 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/furnitureBakeLight.png.meta
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+========
     aniso: 3
     mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50

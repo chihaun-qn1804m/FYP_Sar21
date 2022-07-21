@@ -7,7 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/SampleFramework/Usage/SpatialAnchor/Materials/IconAnchor.mat
+  m_Name: IconAnchor
+========
   m_Name: Sand 1
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/Plugins/RootMotion/FinalIK/_DEMOS/Assets/Environments/Materials/Sand 1.mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

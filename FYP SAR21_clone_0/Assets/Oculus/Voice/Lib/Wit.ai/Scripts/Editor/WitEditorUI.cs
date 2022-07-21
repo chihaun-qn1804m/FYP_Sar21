@@ -39,7 +39,10 @@ namespace Facebook.WitAi
         }
         public static void LayoutStatusLabel(string text)
         {
-            LayoutLabel(text, WitStyles.LabelStatus);
+            EditorGUILayout.BeginVertical(WitStyles.LabelStatusBackground,
+                GUILayout.ExpandWidth(true), GUILayout.Height(24));
+            EditorGUILayout.LabelField(text, WitStyles.LabelStatus, GUILayout.ExpandWidth(true));
+            EditorGUILayout.EndVertical();
         }
         private static void LayoutLabel(string text, GUIStyle style)
         {
@@ -304,8 +307,26 @@ namespace Facebook.WitAi
         }
         public static void LayoutPopup(string key, string[] options, ref int selectionValue, ref bool isUpdated)
         {
-            // Simple layout
-            int newSelectionValue = EditorGUILayout.Popup(key, selectionValue, options, WitStyles.Popup);
+            // Default
+            int newSelectionValue = selectionValue;
+
+            // No options
+            if (options == null || options.Length == 0)
+            {
+                newSelectionValue = -1;
+                EditorGUILayout.LabelField(key, "<color=FF0000>No Options</color>", WitStyles.Label);
+            }
+            // Single Option
+            else if (options.Length == 1)
+            {
+                newSelectionValue = 0;
+                EditorGUILayout.LabelField(key, options[0], WitStyles.Label);
+            }
+            // Popup Options
+            else
+            {
+                newSelectionValue = EditorGUILayout.Popup(key, selectionValue, options, WitStyles.Popup);
+            }
 
             // Update
             if (selectionValue != newSelectionValue)
@@ -348,8 +369,6 @@ namespace Facebook.WitAi
         #region WINDOW
         public static void LayoutWindow(string windowTitle, Texture2D windowHeader, string windowHeaderUrl, Action windowContentLayout, ref Vector2 offset, out Vector2 size)
         {
-            // Init styles
-            WitStyles.Init();
             // Get minimum width
             float minWidth = WitStyles.WindowMinWidth;
 

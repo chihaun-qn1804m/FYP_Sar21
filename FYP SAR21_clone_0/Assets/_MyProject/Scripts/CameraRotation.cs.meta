@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/BNG Framework/Integrations/FinalIK/IKHandTargetMover.cs.meta
+guid: fbfce1ac963496349830c8d6d6a5f5d1
+========
 guid: c8ec4da564df00f4db7f9ddddda0d360
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21/Assets/_MyProject/Scripts/CameraRotation.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
