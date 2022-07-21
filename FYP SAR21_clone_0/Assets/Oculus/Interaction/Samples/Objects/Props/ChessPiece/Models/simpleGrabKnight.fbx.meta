@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/ChessPiece/Models/simpleGrabKnight.fbx.meta
 guid: c55aaa44df61b8942a6d1c8d53612600
+========
+guid: 6626c40df85db304a9ab41baa2178c45
+>>>>>>>> 85395ed827284f3784da9050a870135b5ee49177:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Props/ChessPiece/Models/simpleGrabKnightConvexHulls.fbx.meta
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
