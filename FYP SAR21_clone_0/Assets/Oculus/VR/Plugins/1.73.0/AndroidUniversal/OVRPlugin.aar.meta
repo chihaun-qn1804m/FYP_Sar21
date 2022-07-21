@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21_clone_0/Assets/Oculus/VR/Plugins/1.73.0/AndroidUniversal/OVRPlugin.aar.meta
 guid: 8a9ee4f84148f004596bf6b22e64df35
+========
+guid: a033eb86a09dd3542835777428445cf0
+>>>>>>>> 85395ed827284f3784da9050a870135b5ee49177:FYP SAR21/Assets/Oculus/Interaction/Runtime/Plugins/Android/InteractionSdk.aar.meta
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -7,7 +11,7 @@ PluginImporter:
   executionOrder: {}
   defineConstraints: []
   isPreloaded: 0
-  isOverridable: 0
+  isOverridable: 1
   isExplicitlyReferenced: 0
   validateReferences: 1
   platformData:

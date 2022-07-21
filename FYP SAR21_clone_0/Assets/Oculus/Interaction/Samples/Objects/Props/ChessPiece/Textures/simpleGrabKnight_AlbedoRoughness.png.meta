@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:FYP SAR21_clone_0/Assets/Oculus/Interaction/Samples/Objects/Props/ChessPiece/Textures/simpleGrabKnight_AlbedoRoughness.png.meta
 guid: e35eeeb9c4e16fa469f141d669ed69d7
+========
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/furnitureBakeLight.png.meta
+guid: 9bec27491f84ddc4d9151c7eb2487b59
+========
+guid: 0faa4dd921a67244ca24a86643ea3887
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
+>>>>>>>> 85395ed827284f3784da9050a870135b5ee49177:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/furnitureBakeLight.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +29,11 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+<<<<<<<< HEAD:FYP SAR21_clone_0/Assets/Oculus/Interaction/Samples/Objects/Props/ChessPiece/Textures/simpleGrabKnight_AlbedoRoughness.png.meta
   streamingMipmaps: 0
+========
+  streamingMipmaps: 1
+>>>>>>>> 85395ed827284f3784da9050a870135b5ee49177:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/furnitureBakeLight.png.meta
   streamingMipmapsPriority: 0
   vTOnly: 0
   grayScaleToAlpha: 0
@@ -33,11 +45,19 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
+<<<<<<<< HEAD:FYP SAR21/Assets/Oculus/Interaction/Samples/Objects/Environment/SmallRoom/Textures/furnitureBakeLight.png.meta
     aniso: 1
     mipBias: 0
     wrapU: 0
     wrapV: 0
     wrapW: 0
+========
+    aniso: 3
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+>>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8:FYP SAR21_clone_0/Assets/_MyProject/Scenes/Tutorial_room/Lightmap-0_comp_light.exr.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -49,10 +69,10 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 0
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 6
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
