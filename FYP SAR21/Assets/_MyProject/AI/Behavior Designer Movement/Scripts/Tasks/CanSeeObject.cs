@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tasks.Movement
 {
@@ -8,6 +9,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
     [TaskIcon("Assets/Behavior Designer Movement/Editor/Icons/{SkinColor}CanSeeObjectIcon.png")]
     public class CanSeeObject : Conditional
     {
+        public GameObject itself;
         [Tooltip("Should the 2D version be used?")]
         public bool usePhysics2D;
         [Tooltip("The object that we are searching for")]
@@ -91,6 +93,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                             if (angle < minAngle) {
                                 minAngle = angle;
                                 objectFound = obj;
+                                Debug.Log("1");
                             }
                         }
                     }
@@ -109,6 +112,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                             if (angle < minAngle) {
                                 minAngle = angle;
                                 objectFound = obj;
+                                Debug.Log("2");
                             }
                         }
                     }
@@ -131,6 +135,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                             if (angle < minAngle) {
                                 minAngle = angle;
                                 objectFound = obj;
+                                Debug.Log("3");
                             }
                         }
                     }
@@ -149,6 +154,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                             if (angle < minAngle) {
                                 minAngle = angle;
                                 objectFound = obj;
+                            
                             }
                         }
                     }
@@ -169,6 +175,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 
             if (returnedObject.Value != null) {
                 // Return success if an object was found
+                itself.GetComponent<WeaponIk>().target = returnedObject.Value;
                 return TaskStatus.Success;
             }
             // An object is not within sight so return failure

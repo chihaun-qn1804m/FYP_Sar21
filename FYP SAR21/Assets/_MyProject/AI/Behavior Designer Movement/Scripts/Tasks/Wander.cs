@@ -23,6 +23,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedInt targetRetries = 1;
         Animator animator;
         NavMeshAgent agent;
+        public GameObject itself;
         private float pauseTime;
         private float destinationReachTime;
 
@@ -35,6 +36,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public override TaskStatus OnUpdate()
         {
             animator.SetFloat("Speed", agent.velocity.magnitude);
+            animator.SetBool("Shooting", false);
+            itself.GetComponent<WeaponIk>().enabled = false;
             if (HasArrived()) {
                 // The agent should pause at the destination only if the max pause duration is greater than 0
                 if (maxPauseDuration.Value > 0) {

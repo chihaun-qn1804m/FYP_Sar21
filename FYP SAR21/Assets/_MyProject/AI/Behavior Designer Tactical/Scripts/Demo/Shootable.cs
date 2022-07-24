@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tactical
 {
@@ -15,6 +16,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         public float repeatAttackDelay;
         // The maximum angle that the agent can attack from
         public float attackAngle;
+        Animator animator;
 
         // The last time the agent attacked
         private float lastAttackTime;
@@ -24,6 +26,8 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// </summary>
         private void Awake()
         {
+            
+            animator = GetComponent<Animator>();
             lastAttackTime = -repeatAttackDelay;
         }
 
@@ -60,6 +64,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// <param name="targetPosition">The position to attack.</param>
         public void Attack(Vector3 targetPosition)
         {
+            
             GameObject.Instantiate(bullet, transform.position, Quaternion.LookRotation(targetPosition - transform.position));
             lastAttackTime = Time.time;
         }

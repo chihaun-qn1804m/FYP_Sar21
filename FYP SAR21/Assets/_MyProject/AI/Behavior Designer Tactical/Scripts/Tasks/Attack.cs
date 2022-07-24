@@ -2,6 +2,7 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Tooltip = BehaviorDesigner.Runtime.Tasks.TooltipAttribute;
 using HelpURL = BehaviorDesigner.Runtime.Tasks.HelpURLAttribute;
+using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tactical.Tasks
 {
@@ -11,17 +12,29 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
     [TaskIcon("Assets/Behavior Designer Tactical/Editor/Icons/{SkinColor}AttackIcon.png")]
     public class Attack : NavMeshTacticalGroup
     {
+        public GameObject itself;
+        NavMeshAgent agent;
+        Animator animator;
         public override TaskStatus OnUpdate()
         {
             var baseStatus = base.OnUpdate();
+            agent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
+            itself.GetComponent<WeaponIk>().enabled = true;
+            
+            animator.SetFloat("Speed", agent.velocity.magnitude);
+            animator.SetBool("Shooting", true);
+            
             if (baseStatus != TaskStatus.Running || !started) {
+                //animator.SetBool("Shooting", false);
                 return baseStatus;
             }
 
-            if (MoveToAttackPosition()) {
+            if (MoveToAttackPosition()) { 
+                //agent.velocity.magnitude = 0;
+                itself.GetComponent<WeaponIk>().enabled = true;
                 tacticalAgent.TryAttack();
             }
-
             return TaskStatus.Running;
         }
     }

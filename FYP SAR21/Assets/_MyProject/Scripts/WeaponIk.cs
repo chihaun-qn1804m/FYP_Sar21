@@ -62,11 +62,7 @@ public class WeaponIk : MonoBehaviour
         if (aimTransform == null) {
             return;
         } 
-        if (agent.velocity.magnitude == 0) {
-            targetTransform = null;
-            target = null;
-            return;
-        }
+
 
         Vector3 targetPosition = GetTargetPosition();
         for (int i=0; i < iterations; i++ ) {

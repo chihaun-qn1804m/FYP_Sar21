@@ -27,6 +27,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         public void Damage(float amount)
         {
             currentHealth = Mathf.Max(currentHealth - amount, 0);
+            Debug.Log(currentHealth);
 
             if (currentHealth == 0) {
                 gameObject.SetActive(false);
