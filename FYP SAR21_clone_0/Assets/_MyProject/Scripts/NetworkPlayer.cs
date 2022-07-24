@@ -56,7 +56,6 @@ public class NetworkPlayer : MonoBehaviour
             MapPositionRotation(leftHand, leftHandRig);
             MapPositionRotation(rightHand, rightHandRig);
             MapPositionRotation(playerRotation, playerRotationRig);
-            Debug.Log(leftHand.transform);
             // MapPosition(leftLeg, leftLegRig);
             // MapPosition(rightLeg, rightLegRig);
         }

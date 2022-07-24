@@ -43,8 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dedcc8f10e69f42b95cac01a80a834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  maxPlayersPerRoom: 10
+  JoinRoomOnStart: 1
+  dontDestroyOnLoad: 1
+=======
   maxPlayersPerRoom: 0
   JoinRoomOnStart: 1
+>>>>>>> 0239affc036ca5bbd3a36cec2a3df3d67f1da0d8
   JoinRoomName: RandomRoom
   GameVersion: 1
   RemotePlayerObjectName: RemotePlayer

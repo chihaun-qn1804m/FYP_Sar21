@@ -8,6 +8,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Facebook.WitAi.Configuration;
 using Facebook.WitAi.Data;
@@ -32,7 +33,6 @@ namespace Facebook.WitAi
         private WitRequestOptions _currentRequestOptions;
         private float _lastMinVolumeLevelTime;
         private WitRequest _recordingRequest;
-        private HashSet<WitRequest> _transmitRequests = new HashSet<WitRequest>();
 
         private bool _isSoundWakeActive;
         private RingBuffer<byte> _micDataBuffer;
@@ -49,10 +49,16 @@ namespace Facebook.WitAi
         private bool _receivedTranscription;
         private float _lastWordTime;
 
+        // Parallel Requests
+        private HashSet<WitRequest> _transmitRequests = new HashSet<WitRequest>();
+        private HashSet<WitRequest> _queuedRequests = new HashSet<WitRequest>();
+        private Coroutine _queueHandler;
+
         #region Interfaces
         private IWitByteDataReadyHandler[] _dataReadyHandlers;
         private IWitByteDataSentHandler[] _dataSentHandlers;
         private Coroutine _micInitCoroutine;
+        private IDynamicEntitiesProvider[] _dynamicEntityProviders;
 
         #endregion
 
@@ -126,8 +132,9 @@ namespace Facebook.WitAi
 
         #region LIFECYCLE
         // Find transcription provider & Mic
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             if (null == _activeTranscriptionProvider &&
                 _runtimeConfiguration.customTranscriptionProvider)
             {
@@ -144,8 +151,9 @@ namespace Facebook.WitAi
             _dataSentHandlers = GetComponents<IWitByteDataSentHandler>();
         }
         // Add mic delegates
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
 #if UNITY_EDITOR
             // Make sure we have a mic input after a script recompile
             if (null == _micInput)
@@ -158,6 +166,8 @@ namespace Facebook.WitAi
             _micInput.OnStartRecording += OnMicStartListening;
             _micInput.OnStopRecording += OnMicStoppedListening;
 
+            _dynamicEntityProviders = GetComponents<IDynamicEntitiesProvider>();
+
             InitializeConfig();
         }
         // If always recording, begin now
@@ -169,8 +179,9 @@ namespace Facebook.WitAi
             }
         }
         // Remove mic delegates
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             _micInput.OnSampleReady -= OnMicSampleReady;
             _micInput.OnStartRecording -= OnMicStartListening;
             _micInput.OnStopRecording -= OnMicStoppedListening;
@@ -242,7 +253,7 @@ namespace Facebook.WitAi
 
             if (ShouldSendMicData)
             {
-                _recordingRequest = RuntimeConfiguration.witConfiguration.SpeechRequest(requestOptions);
+                _recordingRequest = RuntimeConfiguration.witConfiguration.SpeechRequest(requestOptions, _dynamicEntityProviders);
                 _recordingRequest.audioEncoding = _micInput.AudioEncoding;
                 _recordingRequest.onPartialTranscription = OnPartialTranscription;
                 _recordingRequest.onFullTranscription = OnFullTranscription;
@@ -416,7 +427,7 @@ namespace Facebook.WitAi
 
                     // Flush the marker buffer to catch up
                     int read;
-                    while ((read = _lastSampleMarker.Read(_writeBuffer, 0, _writeBuffer.Length, true)) > 0)
+                    while (null != _lastSampleMarker && (read = _lastSampleMarker.Read(_writeBuffer, 0, _writeBuffer.Length, true)) > 0)
                     {
                         _recordingRequest.Write(_writeBuffer, 0, read);
                         events.OnByteDataSent?.Invoke(_writeBuffer, 0, read);
@@ -510,6 +521,7 @@ namespace Facebook.WitAi
         /// </summary>
         public override void DeactivateAndAbortRequest()
         {
+            events.OnAborting.Invoke();
             DeactivateRequest(_micInput.IsRecording ? events.OnStoppedListeningDueToDeactivation : null, true);
         }
         // Stop listening if time expires
@@ -546,6 +558,7 @@ namespace Facebook.WitAi
             // Abort transmitting requests
             if (abort)
             {
+                AbortQueue();
                 foreach (var request in _transmitRequests)
                 {
                     DeactivateWitRequest(request, true);
@@ -610,14 +623,76 @@ namespace Facebook.WitAi
         private void SendTranscription(string transcription, WitRequestOptions requestOptions)
         {
             // Create request & add response delegate
-            WitRequest request = RuntimeConfiguration.witConfiguration.MessageRequest(transcription, requestOptions);
+            WitRequest request = RuntimeConfiguration.witConfiguration.MessageRequest(transcription, requestOptions, _dynamicEntityProviders);
             request.onResponse += HandleResult;
+
             // Call on create delegate
             events.OnRequestCreated?.Invoke(request);
-            // Add to transmit requests list
-            _transmitRequests.Add(request);
-            // Perform request
-            request.Request();
+
+            // Add to queue
+            AddToQueue(request);
+        }
+        #endregion
+
+        #region QUEUE
+        // Add request to wait queue
+        private void AddToQueue(WitRequest request)
+        {
+            // In editor or disabled, do not queue
+            if (!Application.isPlaying || _runtimeConfiguration.maxConcurrentRequests <= 0)
+            {
+                _transmitRequests.Add(request);
+                request.Request();
+                return;
+            }
+
+            // Add to queue
+            _queuedRequests.Add(request);
+
+            // If not running, begin
+            if (_queueHandler == null)
+            {
+                _queueHandler = StartCoroutine(PerformDequeue());
+            }
+        }
+        // Abort request
+        private void AbortQueue()
+        {
+            if (_queueHandler != null)
+            {
+                StopCoroutine(_queueHandler);
+                _queueHandler = null;
+            }
+            foreach (var request in _queuedRequests)
+            {
+                DeactivateWitRequest(request, true);
+            }
+            _queuedRequests.Clear();
+        }
+        // Coroutine used to send transcriptions when possible
+        private IEnumerator PerformDequeue()
+        {
+            // Perform until no requests remain
+            while (_queuedRequests.Count > 0)
+            {
+                // Wait a frame to space out requests
+                yield return new WaitForEndOfFrame();
+
+                // If space, dequeue & request
+                if (_transmitRequests.Count < _runtimeConfiguration.maxConcurrentRequests)
+                {
+                    // Dequeue
+                    WitRequest request = _queuedRequests.First();
+                    _queuedRequests.Remove(request);
+
+                    // Transmit
+                    _transmitRequests.Add(request);
+                    request.Request();
+                }
+            }
+
+            // Kill coroutine
+            _queueHandler = null;
         }
         #endregion
 

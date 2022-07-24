@@ -154,7 +154,12 @@ public class OVROverlayEditor : Editor
 			}
 			currentShapeIndex = EditorGUILayout.Popup(new GUIContent("Overlay Shape", "The shape of this overlay"), currentShapeIndex, selectableShapeNames);
 			overlay.currentOverlayShape = selectableShapeValues[currentShapeIndex];
+		}
 
+		if (overlay.currentOverlayShape == OVROverlay.OverlayShape.Cubemap)
+		{
+			overlay.useLegacyCubemapRotation = EditorGUILayout.Toggle(new GUIContent("Use Legacy Cubemap Rotation",
+				"Whether the cubemap should use the legacy rotation which was rotated 180 degrees around the Y axis comapred to Unity's definition of cubemaps. This setting will be deprecated in the near future, therefore it is recommended to fix the cubemap texture instead."), overlay.useLegacyCubemapRotation);
 		}
 
 		EditorGUILayout.Space();
@@ -162,6 +167,10 @@ public class OVROverlayEditor : Editor
 		EditorGUILayout.LabelField("Layer Properties", EditorStyles.boldLabel);
 		overlay.useBicubicFiltering = EditorGUILayout.Toggle(new GUIContent("Bicubic Filtering",
 			"Whether this layer should use bicubic filtering. This can increase quality for small details on text and icons being viewed at farther distances."), overlay.useBicubicFiltering);
+		overlay.useEfficientSupersample = EditorGUILayout.Toggle(new GUIContent("Super Sample",
+			"Whether this layer should use an efficient super sample filter. This can help reduce flicker artifacts."), overlay.useEfficientSupersample);
+		overlay.useEfficientSharpen = EditorGUILayout.Toggle(new GUIContent("Sharpen",
+			"Whether this layer should use a sharpen filter. This amplifies contrast and fine details"), overlay.useEfficientSharpen);
 
 		EditorGUILayout.Space();
 
