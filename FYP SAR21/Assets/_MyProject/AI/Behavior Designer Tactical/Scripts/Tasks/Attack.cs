@@ -23,7 +23,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             itself.GetComponent<WeaponIk>().enabled = true;
             
             animator.SetFloat("Speed", agent.velocity.magnitude);
-            animator.SetBool("Shooting", true);
+            
             
             if (baseStatus != TaskStatus.Running || !started) {
                 //animator.SetBool("Shooting", false);

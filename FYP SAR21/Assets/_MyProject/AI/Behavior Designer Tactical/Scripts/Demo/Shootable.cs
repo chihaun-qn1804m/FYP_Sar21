@@ -16,7 +16,9 @@ namespace BehaviorDesigner.Runtime.Tactical
         public float repeatAttackDelay;
         // The maximum angle that the agent can attack from
         public float attackAngle;
+        public GameObject target;
         Animator animator;
+        public Transform aimTransform;
 
         // The last time the agent attacked
         private float lastAttackTime;
@@ -46,6 +48,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// <returns>Returns true if the agent can attack.</returns>
         public bool CanAttack()
         {
+            animator.SetBool("Shooting", true);
             return lastAttackTime + repeatAttackDelay < Time.time;
         }
 
@@ -65,7 +68,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         public void Attack(Vector3 targetPosition)
         {
             
-            GameObject.Instantiate(bullet, transform.position, Quaternion.LookRotation(targetPosition - transform.position));
+            GameObject.Instantiate(bullet, aimTransform.position, Quaternion.LookRotation(targetPosition - aimTransform.position));
             lastAttackTime = Time.time;
         }
     }
